@@ -8,20 +8,59 @@
 
 /* Begin PBXBuildFile section */
 		2407E4EC1F825C0100603872 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407E4EB1F825C0100603872 /* AppDelegate.swift */; };
-		2407E4EE1F825C0100603872 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407E4ED1F825C0100603872 /* ViewController.swift */; };
 		2407E4F11F825C0100603872 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2407E4EF1F825C0100603872 /* Main.storyboard */; };
 		2407E4F31F825C0100603872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2407E4F21F825C0100603872 /* Assets.xcassets */; };
 		2407E4F61F825C0100603872 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2407E4F41F825C0100603872 /* LaunchScreen.storyboard */; };
+		2407E4FF1F8270C700603872 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2407E4FE1F8270C700603872 /* AudioToolbox.framework */; };
+		24D7C0F61F86548D0020EB4C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F51F86548D0020EB4C /* MainController.swift */; };
+		24D7C0F81F8654E90020EB4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */; };
+		24D7C0FA1F8667E60020EB4C /* InitialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F91F8667E60020EB4C /* InitialController.swift */; };
+		24D7C0FC1F866B290020EB4C /* GameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0FB1F866B290020EB4C /* GameSetting.swift */; };
+		24D7C0FE1F866D350020EB4C /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0FD1F866D350020EB4C /* GameController.swift */; };
+		24D7C1021F95BDEA0020EB4C /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C1011F95BDEA0020EB4C /* HistoryController.swift */; };
+		24D7C1041F95BE390020EB4C /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C1031F95BE390020EB4C /* HistoryCell.swift */; };
+		24D7C10D1F95D8640020EB4C /* MMCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C10B1F95D8640020EB4C /* MMCardItem.swift */; };
+		24D7C10E1F95D8640020EB4C /* MMShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C10C1F95D8640020EB4C /* MMShareSheet.swift */; };
+		24D7C1121F95EA390020EB4C /* GiFHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C1111F95EA390020EB4C /* GiFHUD.swift */; };
+		24D7C1141F95ED5A0020EB4C /* hud1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 24D7C1131F95ED5A0020EB4C /* hud1.gif */; };
+		24D7C1191F960E2A0020EB4C /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C1181F960E2A0020EB4C /* LoginController.swift */; };
+		24D7C1201F9611650020EB4C /* C415F3F13BBD50B1-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24D7C11B1F9611650020EB4C /* C415F3F13BBD50B1-info.plist */; };
+		24D7C1211F9611650020EB4C /* STLVideoFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C11D1F9611650020EB4C /* STLVideoFunctions.m */; };
+		24D7C1221F9611650020EB4C /* STLVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C11F1F9611650020EB4C /* STLVideoViewController.m */; };
+		24D7C12A1F9618C50020EB4C /* loginSky.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 24D7C1291F9618C50020EB4C /* loginSky.mp4 */; };
+		32AC1B0CD77BD1595D19D987 /* Pods_FIT5140Final.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944F786758AEBEF28720FCF8 /* Pods_FIT5140Final.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03EFA8E8E697599647432E54 /* Pods-FIT5140Final.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIT5140Final.release.xcconfig"; path = "Pods/Target Support Files/Pods-FIT5140Final/Pods-FIT5140Final.release.xcconfig"; sourceTree = "<group>"; };
 		2407E4E81F825C0100603872 /* FIT5140Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FIT5140Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2407E4EB1F825C0100603872 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2407E4ED1F825C0100603872 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2407E4F01F825C0100603872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2407E4F21F825C0100603872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2407E4F51F825C0100603872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2407E4F71F825C0100603872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2407E4FE1F8270C700603872 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		24D7C0F51F86548D0020EB4C /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		24D7C0F91F8667E60020EB4C /* InitialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialController.swift; sourceTree = "<group>"; };
+		24D7C0FB1F866B290020EB4C /* GameSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSetting.swift; sourceTree = "<group>"; };
+		24D7C0FD1F866D350020EB4C /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		24D7C1011F95BDEA0020EB4C /* HistoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
+		24D7C1031F95BE390020EB4C /* HistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		24D7C10B1F95D8640020EB4C /* MMCardItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMCardItem.swift; sourceTree = "<group>"; };
+		24D7C10C1F95D8640020EB4C /* MMShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMShareSheet.swift; sourceTree = "<group>"; };
+		24D7C1111F95EA390020EB4C /* GiFHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiFHUD.swift; sourceTree = "<group>"; };
+		24D7C1131F95ED5A0020EB4C /* hud1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hud1.gif; sourceTree = "<group>"; };
+		24D7C1181F960E2A0020EB4C /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		24D7C11A1F9611650020EB4C /* FIT5140Final-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FIT5140Final-Bridging-Header.h"; sourceTree = "<group>"; };
+		24D7C11B1F9611650020EB4C /* C415F3F13BBD50B1-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "C415F3F13BBD50B1-info.plist"; sourceTree = "<group>"; };
+		24D7C11C1F9611650020EB4C /* STLVideoFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLVideoFunctions.h; sourceTree = "<group>"; };
+		24D7C11D1F9611650020EB4C /* STLVideoFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLVideoFunctions.m; sourceTree = "<group>"; };
+		24D7C11E1F9611650020EB4C /* STLVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLVideoViewController.h; sourceTree = "<group>"; };
+		24D7C11F1F9611650020EB4C /* STLVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLVideoViewController.m; sourceTree = "<group>"; };
+		24D7C1291F9618C50020EB4C /* loginSky.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loginSky.mp4; sourceTree = "<group>"; };
+		944F786758AEBEF28720FCF8 /* Pods_FIT5140Final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FIT5140Final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2A6338150C01395FDDBFB18 /* Pods-FIT5140Final.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIT5140Final.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FIT5140Final/Pods-FIT5140Final.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2407E4FF1F8270C700603872 /* AudioToolbox.framework in Frameworks */,
+				32AC1B0CD77BD1595D19D987 /* Pods_FIT5140Final.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +81,8 @@
 			children = (
 				2407E4EA1F825C0100603872 /* FIT5140Final */,
 				2407E4E91F825C0100603872 /* Products */,
+				2407E4FD1F8270C700603872 /* Frameworks */,
+				25BB5B258D1A58F368EAE659 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +97,50 @@
 		2407E4EA1F825C0100603872 /* FIT5140Final */ = {
 			isa = PBXGroup;
 			children = (
+				24D7C11B1F9611650020EB4C /* C415F3F13BBD50B1-info.plist */,
+				24D7C11C1F9611650020EB4C /* STLVideoFunctions.h */,
+				24D7C11D1F9611650020EB4C /* STLVideoFunctions.m */,
+				24D7C11E1F9611650020EB4C /* STLVideoViewController.h */,
+				24D7C11F1F9611650020EB4C /* STLVideoViewController.m */,
+				24D7C11A1F9611650020EB4C /* FIT5140Final-Bridging-Header.h */,
+				24D7C1131F95ED5A0020EB4C /* hud1.gif */,
+				24D7C1291F9618C50020EB4C /* loginSky.mp4 */,
+				24D7C1111F95EA390020EB4C /* GiFHUD.swift */,
+				24D7C10B1F95D8640020EB4C /* MMCardItem.swift */,
+				24D7C10C1F95D8640020EB4C /* MMShareSheet.swift */,
+				24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */,
 				2407E4EB1F825C0100603872 /* AppDelegate.swift */,
-				2407E4ED1F825C0100603872 /* ViewController.swift */,
-				2407E4EF1F825C0100603872 /* Main.storyboard */,
-				2407E4F21F825C0100603872 /* Assets.xcassets */,
 				2407E4F41F825C0100603872 /* LaunchScreen.storyboard */,
 				2407E4F71F825C0100603872 /* Info.plist */,
+				2407E4F21F825C0100603872 /* Assets.xcassets */,
+				2407E4EF1F825C0100603872 /* Main.storyboard */,
+				24D7C1181F960E2A0020EB4C /* LoginController.swift */,
+				24D7C0FB1F866B290020EB4C /* GameSetting.swift */,
+				24D7C0F51F86548D0020EB4C /* MainController.swift */,
+				24D7C0F91F8667E60020EB4C /* InitialController.swift */,
+				24D7C0FD1F866D350020EB4C /* GameController.swift */,
+				24D7C1011F95BDEA0020EB4C /* HistoryController.swift */,
+				24D7C1031F95BE390020EB4C /* HistoryCell.swift */,
 			);
 			path = FIT5140Final;
+			sourceTree = "<group>";
+		};
+		2407E4FD1F8270C700603872 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2407E4FE1F8270C700603872 /* AudioToolbox.framework */,
+				944F786758AEBEF28720FCF8 /* Pods_FIT5140Final.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		25BB5B258D1A58F368EAE659 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F2A6338150C01395FDDBFB18 /* Pods-FIT5140Final.debug.xcconfig */,
+				03EFA8E8E697599647432E54 /* Pods-FIT5140Final.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +150,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2407E4FA1F825C0100603872 /* Build configuration list for PBXNativeTarget "FIT5140Final" */;
 			buildPhases = (
+				7DAE2739EF6A4801CDA3FE3B /* [CP] Check Pods Manifest.lock */,
 				2407E4E41F825C0100603872 /* Sources */,
 				2407E4E51F825C0100603872 /* Frameworks */,
 				2407E4E61F825C0100603872 /* Resources */,
+				257B24EABA5892C129BA4E01 /* [CP] Embed Pods Frameworks */,
+				3E8FAD5552FB3692E19C5A8C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -97,6 +179,7 @@
 					2407E4E71F825C0100603872 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 4KR69MB8K9;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -125,19 +208,92 @@
 			buildActionMask = 2147483647;
 			files = (
 				2407E4F61F825C0100603872 /* LaunchScreen.storyboard in Resources */,
+				24D7C0F81F8654E90020EB4C /* GoogleService-Info.plist in Resources */,
+				24D7C1141F95ED5A0020EB4C /* hud1.gif in Resources */,
 				2407E4F31F825C0100603872 /* Assets.xcassets in Resources */,
+				24D7C12A1F9618C50020EB4C /* loginSky.mp4 in Resources */,
+				24D7C1201F9611650020EB4C /* C415F3F13BBD50B1-info.plist in Resources */,
 				2407E4F11F825C0100603872 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		257B24EABA5892C129BA4E01 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FIT5140Final/Pods-FIT5140Final-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FIT5140Final/Pods-FIT5140Final-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E8FAD5552FB3692E19C5A8C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FIT5140Final/Pods-FIT5140Final-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DAE2739EF6A4801CDA3FE3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FIT5140Final-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2407E4E41F825C0100603872 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2407E4EE1F825C0100603872 /* ViewController.swift in Sources */,
+				24D7C1191F960E2A0020EB4C /* LoginController.swift in Sources */,
+				24D7C1211F9611650020EB4C /* STLVideoFunctions.m in Sources */,
+				24D7C0FC1F866B290020EB4C /* GameSetting.swift in Sources */,
+				24D7C0FE1F866D350020EB4C /* GameController.swift in Sources */,
+				24D7C1121F95EA390020EB4C /* GiFHUD.swift in Sources */,
+				24D7C0F61F86548D0020EB4C /* MainController.swift in Sources */,
+				24D7C1021F95BDEA0020EB4C /* HistoryController.swift in Sources */,
+				24D7C0FA1F8667E60020EB4C /* InitialController.swift in Sources */,
+				24D7C10E1F95D8640020EB4C /* MMShareSheet.swift in Sources */,
+				24D7C1221F9611650020EB4C /* STLVideoViewController.m in Sources */,
+				24D7C1041F95BE390020EB4C /* HistoryCell.swift in Sources */,
+				24D7C10D1F95D8640020EB4C /* MMCardItem.swift in Sources */,
 				2407E4EC1F825C0100603872 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,26 +415,33 @@
 		};
 		2407E4FB1F825C0100603872 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2A6338150C01395FDDBFB18 /* Pods-FIT5140Final.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4KR69MB8K9;
 				INFOPLIST_FILE = FIT5140Final/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Monash.FIT5140Final;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FIT5140Final/FIT5140Final-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		2407E4FC1F825C0100603872 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03EFA8E8E697599647432E54 /* Pods-FIT5140Final.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4KR69MB8K9;
 				INFOPLIST_FILE = FIT5140Final/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Monash.FIT5140Final;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FIT5140Final/FIT5140Final-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -302,6 +465,7 @@
 				2407E4FC1F825C0100603872 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
