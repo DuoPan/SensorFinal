@@ -125,16 +125,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejD-AC-iNr">
-                                <rect key="frame" x="164" y="428" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="kJA-Ba-OUC"/>
-                                </constraints>
-                                <state key="normal" title="Start"/>
-                                <connections>
-                                    <segue destination="fHB-0P-Ctl" kind="show" identifier="startNewGame" id="eIL-gM-0RN"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qTy-Em-ub9">
                                 <rect key="frame" x="0.0" y="157.5" width="375" height="30"/>
                                 <nil key="textColor"/>
@@ -168,6 +158,28 @@
                                     <constraint firstAttribute="height" constant="30" id="JKW-YN-p9C"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tree1" translatesAutoresizingMaskIntoConstraints="NO" id="UNw-tF-4FJ">
+                                <rect key="frame" x="67" y="369" width="240" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0af-bs-oB4">
+                                <rect key="frame" x="0.0" y="335" width="251" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Randomly Generate Tree Model"/>
+                                <connections>
+                                    <action selector="generateTree:" destination="0aP-ii-ZYq" eventType="touchUpInside" id="bXi-Ss-62y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejD-AC-iNr">
+                                <rect key="frame" x="164" y="617" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="kJA-Ba-OUC"/>
+                                </constraints>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <segue destination="fHB-0P-Ctl" kind="show" identifier="startNewGame" id="eIL-gM-0RN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -182,7 +194,7 @@
                             <constraint firstItem="qTy-Em-ub9" firstAttribute="top" secondItem="ihw-QI-qPW" secondAttribute="bottom" constant="7.5" id="HDA-ju-uMM"/>
                             <constraint firstItem="oO0-Gm-gyG" firstAttribute="trailing" secondItem="5fL-lf-ZWr" secondAttribute="trailing" id="He6-Wz-lHQ"/>
                             <constraint firstItem="52b-er-RL1" firstAttribute="leading" secondItem="Cu5-tR-SH2" secondAttribute="leadingMargin" id="K65-ST-wdi"/>
-                            <constraint firstItem="ctK-M9-BsF" firstAttribute="top" secondItem="ejD-AC-iNr" secondAttribute="bottom" constant="209" id="LbS-TT-IG3"/>
+                            <constraint firstItem="ctK-M9-BsF" firstAttribute="top" secondItem="ejD-AC-iNr" secondAttribute="bottom" constant="20" id="LbS-TT-IG3"/>
                             <constraint firstItem="FRB-E6-2fP" firstAttribute="top" secondItem="46J-eP-ZPg" secondAttribute="bottom" constant="7.5" id="OjJ-Dz-Ng7"/>
                             <constraint firstItem="ihw-QI-qPW" firstAttribute="leading" secondItem="qTy-Em-ub9" secondAttribute="leading" id="TlP-h1-hPp"/>
                             <constraint firstItem="7l2-Nd-pWj" firstAttribute="top" secondItem="qTy-Em-ub9" secondAttribute="bottom" constant="7.5" id="VdY-gz-CcP"/>
@@ -199,6 +211,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="UNw-tF-4FJ" id="yBW-Rh-VwE"/>
                         <outlet property="tfHighTemp" destination="huk-sY-DOo" id="HCW-Dx-MkO"/>
                         <outlet property="tfInitialHP" destination="FRB-E6-2fP" id="A36-f0-OlM"/>
                         <outlet property="tfLowTemp" destination="8dO-3d-N1Z" id="AKm-lK-IFT"/>
@@ -619,6 +632,7 @@
     <resources>
         <image name="loadgame" width="962" height="368"/>
         <image name="newgame" width="962" height="364"/>
+        <image name="tree1" width="600" height="600"/>
         <image name="tree_main" width="1954" height="1583"/>
     </resources>
     <inferredMetricsTieBreakers>

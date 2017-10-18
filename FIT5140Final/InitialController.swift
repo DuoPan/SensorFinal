@@ -16,21 +16,69 @@ class InitialController: UIViewController {
     @IBOutlet var tfLowTemp: UITextField!
     @IBOutlet var tfHighTemp: UITextField!
     
- 
+    @IBOutlet var imageView: UIImageView!
+    
+    var imageName = "tree1"
+    
     var settings = GameSetting()
     var allMissions :[String] = []
-    
+   
+    var background: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //reference: click image to full screen
+        //http://blog.csdn.net/qq_30513483/article/details/51115918
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        self.imageView.addGestureRecognizer(tapGestureRecognizer)
+        self.imageView.isUserInteractionEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-
+    func tapHandler(sender: UITapGestureRecognizer) {
+        let bgView = UIView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - (self.navigationController?.navigationBar.frame.height)!))
+        bgView.backgroundColor = UIColor.gray
+        self.view.addSubview(bgView)
+        background = bgView
+        let imgView = UIImageView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - (self.navigationController?.navigationBar.frame.height)!))
+        imgView.image = UIImage(named: self.imageName)
+        imgView.contentMode = .scaleAspectFit;
+        bgView.addSubview(imgView)
+        imgView.isUserInteractionEnabled = true
+        // click to exit full screen
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeHandler))
+        imgView.addGestureRecognizer(tapGesture)
+        showAnim(aView: bgView)
+    }
+    
+    func closeHandler(sender: UITapGestureRecognizer)
+    {
+        background?.removeFromSuperview()
+    }
+    
+    func showAnim(aView: UIView)
+    {
+        let animation = CAKeyframeAnimation(keyPath: "transform")
+        animation.duration = 0.2
+        var values = [Any]()
+        values.append(NSValue(caTransform3D: CATransform3DMakeScale(0.1, 0.1, 1.0)))
+        values.append(NSValue(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0)))
+        animation.values = values
+        aView.layer.add(animation, forKey: nil)
+    }
+    
+    @IBAction func generateTree(_ sender: Any) {
+        // tree1 -- tree60 images
+        let no = arc4random_uniform(UInt32(60)) + 1
+        self.imageName = "tree\(no)"
+        imageView.image = UIImage(named: self.imageName)
+    }
+    
+    
     
     // MARK: - Navigation
 

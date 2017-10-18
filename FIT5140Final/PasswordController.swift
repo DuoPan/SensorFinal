@@ -71,7 +71,6 @@ class PasswordController: UIViewController {
             if p.name == labelID.text && p.password == labelPassword.text{
                 // success
                 self.performSegue(withIdentifier: "gotoMain", sender: view)
-                showMessage(msg: "Welcome   " +  (labelID.text!))
                 return
             }
         }

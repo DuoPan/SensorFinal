@@ -76,7 +76,6 @@ class SignupController: UIViewController {
         // can check psw pattern latter
         upload()
         self.performSegue(withIdentifier: "gotoMain2", sender: view)
-        showMessage(msg: "Welcome   " +  (username.text!))
     }
     
     func showMessage(msg:String){
