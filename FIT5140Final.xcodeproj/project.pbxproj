@@ -12,6 +12,7 @@
 		2407E4F31F825C0100603872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2407E4F21F825C0100603872 /* Assets.xcassets */; };
 		2407E4F61F825C0100603872 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2407E4F41F825C0100603872 /* LaunchScreen.storyboard */; };
 		2407E4FF1F8270C700603872 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2407E4FE1F8270C700603872 /* AudioToolbox.framework */; };
+		24202F741F975C97004FF5AA /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F731F975C97004FF5AA /* SignupController.swift */; };
 		24D7C0F61F86548D0020EB4C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F51F86548D0020EB4C /* MainController.swift */; };
 		24D7C0F81F8654E90020EB4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */; };
 		24D7C0FA1F8667E60020EB4C /* InitialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F91F8667E60020EB4C /* InitialController.swift */; };
@@ -28,6 +29,9 @@
 		24D7C1211F9611650020EB4C /* STLVideoFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C11D1F9611650020EB4C /* STLVideoFunctions.m */; };
 		24D7C1221F9611650020EB4C /* STLVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C11F1F9611650020EB4C /* STLVideoViewController.m */; };
 		24D7C12A1F9618C50020EB4C /* loginSky.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 24D7C1291F9618C50020EB4C /* loginSky.mp4 */; };
+		24D7C12C1F96EC560020EB4C /* PasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C12B1F96EC560020EB4C /* PasswordController.swift */; };
+		24D7C12E1F9726B30020EB4C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C12D1F9726B30020EB4C /* Player.swift */; };
+		24D7C1301F9734FD0020EB4C /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C12F1F9734FD0020EB4C /* AboutController.swift */; };
 		32AC1B0CD77BD1595D19D987 /* Pods_FIT5140Final.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944F786758AEBEF28720FCF8 /* Pods_FIT5140Final.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +44,7 @@
 		2407E4F51F825C0100603872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2407E4F71F825C0100603872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2407E4FE1F8270C700603872 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		24202F731F975C97004FF5AA /* SignupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		24D7C0F51F86548D0020EB4C /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24D7C0F91F8667E60020EB4C /* InitialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialController.swift; sourceTree = "<group>"; };
@@ -59,6 +64,9 @@
 		24D7C11E1F9611650020EB4C /* STLVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLVideoViewController.h; sourceTree = "<group>"; };
 		24D7C11F1F9611650020EB4C /* STLVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLVideoViewController.m; sourceTree = "<group>"; };
 		24D7C1291F9618C50020EB4C /* loginSky.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loginSky.mp4; sourceTree = "<group>"; };
+		24D7C12B1F96EC560020EB4C /* PasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordController.swift; sourceTree = "<group>"; };
+		24D7C12D1F9726B30020EB4C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		24D7C12F1F9734FD0020EB4C /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		944F786758AEBEF28720FCF8 /* Pods_FIT5140Final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FIT5140Final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A6338150C01395FDDBFB18 /* Pods-FIT5140Final.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIT5140Final.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FIT5140Final/Pods-FIT5140Final.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,12 +123,16 @@
 				2407E4F21F825C0100603872 /* Assets.xcassets */,
 				2407E4EF1F825C0100603872 /* Main.storyboard */,
 				24D7C1181F960E2A0020EB4C /* LoginController.swift */,
-				24D7C0FB1F866B290020EB4C /* GameSetting.swift */,
+				24D7C12B1F96EC560020EB4C /* PasswordController.swift */,
+				24202F731F975C97004FF5AA /* SignupController.swift */,
 				24D7C0F51F86548D0020EB4C /* MainController.swift */,
 				24D7C0F91F8667E60020EB4C /* InitialController.swift */,
 				24D7C0FD1F866D350020EB4C /* GameController.swift */,
 				24D7C1011F95BDEA0020EB4C /* HistoryController.swift */,
 				24D7C1031F95BE390020EB4C /* HistoryCell.swift */,
+				24D7C12F1F9734FD0020EB4C /* AboutController.swift */,
+				24D7C12D1F9726B30020EB4C /* Player.swift */,
+				24D7C0FB1F866B290020EB4C /* GameSetting.swift */,
 			);
 			path = FIT5140Final;
 			sourceTree = "<group>";
@@ -282,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D7C12C1F96EC560020EB4C /* PasswordController.swift in Sources */,
 				24D7C1191F960E2A0020EB4C /* LoginController.swift in Sources */,
 				24D7C1211F9611650020EB4C /* STLVideoFunctions.m in Sources */,
 				24D7C0FC1F866B290020EB4C /* GameSetting.swift in Sources */,
@@ -289,12 +302,15 @@
 				24D7C1121F95EA390020EB4C /* GiFHUD.swift in Sources */,
 				24D7C0F61F86548D0020EB4C /* MainController.swift in Sources */,
 				24D7C1021F95BDEA0020EB4C /* HistoryController.swift in Sources */,
+				24202F741F975C97004FF5AA /* SignupController.swift in Sources */,
 				24D7C0FA1F8667E60020EB4C /* InitialController.swift in Sources */,
 				24D7C10E1F95D8640020EB4C /* MMShareSheet.swift in Sources */,
 				24D7C1221F9611650020EB4C /* STLVideoViewController.m in Sources */,
 				24D7C1041F95BE390020EB4C /* HistoryCell.swift in Sources */,
 				24D7C10D1F95D8640020EB4C /* MMCardItem.swift in Sources */,
+				24D7C12E1F9726B30020EB4C /* Player.swift in Sources */,
 				2407E4EC1F825C0100603872 /* AppDelegate.swift in Sources */,
+				24D7C1301F9734FD0020EB4C /* AboutController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

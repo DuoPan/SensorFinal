@@ -1,19 +1,21 @@
 //
-//  MainController.swift
+//  AboutController.swift
 //  FIT5140Final
 //
-//  Created by duo pan on 5/10/17.
+//  Created by duo pan on 18/10/17.
 //  Copyright © 2017 duo pan. All rights reserved.
 //
 
 import UIKit
 
-class MainController: UIViewController {
+class AboutController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Exit", style: .done, target: self, action: #selector(exitGame))
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToPrevious))
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,11 +23,12 @@ class MainController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func exitGame()
-    {
+
+    func backToPrevious(){
         navigationController?.setNavigationBarHidden(true, animated: true)
-        self.navigationController!.popToRootViewController(animated: true)
+        self.navigationController!.popViewController(animated: true)
     }
+    
     
     /*
     // MARK: - Navigation
