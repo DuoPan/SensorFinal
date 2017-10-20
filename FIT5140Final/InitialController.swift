@@ -13,8 +13,6 @@ class InitialController: UIViewController {
     @IBOutlet var tfInitialHP: UITextField!
     @IBOutlet var tfMaxHP: UITextField!
     @IBOutlet var tfMissionInterval: UITextField!
-    @IBOutlet var tfLowTemp: UITextField!
-    @IBOutlet var tfHighTemp: UITextField!
     @IBOutlet var tfMissionDuration: UITextField!
     
     @IBOutlet var imageView: UIImageView!
@@ -99,8 +97,6 @@ class InitialController: UIViewController {
         settings.maxHP = Int(tfMaxHP.text!)!
         settings.missionInterval = Int(tfMissionInterval.text!)!
         settings.missionDuration = Int(tfMissionDuration.text!)!
-        settings.lowTemperature = Int(tfLowTemp.text!)!
-        settings.highTemperature = Int(tfHighTemp.text!)!
         settings.currTree = self.imageName
     }
     

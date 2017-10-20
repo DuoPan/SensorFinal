@@ -17,13 +17,12 @@ class GameController: UIViewController {
     @IBOutlet var target: UILabel!
     @IBOutlet var nextMissionTimeLeft: UILabel!
     
-    
+    var username:String!
     var settings: GameSetting!
     var missionTime:Int!
     var nextMissionTime: Int!
     var timerMission:Timer!
     var timerJudge: Timer!
-    var isMission:Bool! = true
     var curPoints: Int!
     var tarPoints:Int!
     var currMission: Int!
@@ -31,6 +30,8 @@ class GameController: UIViewController {
     var currEnv = EnvironmentData()
     var historyNo: Int!
     var historyList:[HistoryData]!
+    
+    var missions = ["On fire", "Too cold", "Too hot"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +43,34 @@ class GameController: UIViewController {
         tarPoints = settings.maxHP
         target.text?.append(String(settings.maxHP))
         points.text = String(settings.initialHP)
-        mission.text = "nothing"
-        nextMissionTime = settings.missionInterval
-        historyNo = 0
-        historyList = []
+        historyNo = historyList.count
         
-        startMission()
+        if(settings.currMission == "no")
+        {
+            nextMissionTime = settings.timeLeft
+            timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                selector:#selector(self.tickDown2),
+                                                userInfo:nil,repeats:true)
+            mission.text = "nothing"
+        }
+        else{
+            missionTime = settings.timeLeft
+            mission.text = settings.currMission
+            for var i in 0...missions.count {
+                if missions[i] == settings.currMission
+                {
+                    currMission = i
+                    break
+                }
+            }
+            nextMissionTime = settings.missionInterval
+            timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                selector:#selector(self.tickDown1),
+                                                userInfo:nil,repeats:true)
+            timerJudge = Timer.scheduledTimer(timeInterval: 5, target: self,
+                                              selector: #selector(self.judge),
+                                              userInfo: nil, repeats: true)
+        }
         calcPicture()
     }
 
@@ -77,7 +100,6 @@ class GameController: UIViewController {
     func startMission()
     {
         missionTime = settings.missionDuration
-        isMission = true
         setMissionData()
         timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
                                                selector:#selector(self.tickDown1),
@@ -118,7 +140,6 @@ class GameController: UIViewController {
     func finishMission(isSuccess:Bool)
     {
         timeleft.text = "No event now"
-        isMission = false
         if(isSuccess)
         {
             curPoints! += 1
@@ -187,15 +208,12 @@ class GameController: UIViewController {
         
     }
     
-    func gather()
-    {
-        
-    }
+
     
     func addHistory(vc:Int)
     {
         historyNo! += 1
-        let his = HistoryData(number: historyNo, name: settings.missions[currMission], valueChange: vc, totalScore: curPoints)
+        let his = HistoryData(number: historyNo, name: missions[currMission], valueChange: vc, totalScore: curPoints)
         historyList.append(his)
     }
     
@@ -204,7 +222,7 @@ class GameController: UIViewController {
         download()
         missionEnv = currEnv
         currMission = getRandomMission()
-        mission.text = settings.missions[currMission]
+        mission.text = missions[currMission]
     }
 
     // go to login page
@@ -320,7 +338,7 @@ class GameController: UIViewController {
     
     func getRandomMission() -> Int
     {
-        let range = settings.missions.count
+        let range = missions.count
         return Int(arc4random_uniform(UInt32(range)))
     }
     
