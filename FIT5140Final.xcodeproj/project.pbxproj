@@ -13,6 +13,10 @@
 		2407E4F61F825C0100603872 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2407E4F41F825C0100603872 /* LaunchScreen.storyboard */; };
 		2407E4FF1F8270C700603872 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2407E4FE1F8270C700603872 /* AudioToolbox.framework */; };
 		24202F741F975C97004FF5AA /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F731F975C97004FF5AA /* SignupController.swift */; };
+		24202F761F98C21E004FF5AA /* EnvironmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F751F98C21E004FF5AA /* EnvironmentData.swift */; };
+		24202F781F99A11E004FF5AA /* EnvironmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F771F99A11E004FF5AA /* EnvironmentController.swift */; };
+		24202F7A1F99A3AE004FF5AA /* EnvironmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F791F99A3AE004FF5AA /* EnvironmentCell.swift */; };
+		24202F7C1F99B70F004FF5AA /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F7B1F99B70F004FF5AA /* HistoryData.swift */; };
 		24D7C0F61F86548D0020EB4C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F51F86548D0020EB4C /* MainController.swift */; };
 		24D7C0F81F8654E90020EB4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */; };
 		24D7C0FA1F8667E60020EB4C /* InitialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F91F8667E60020EB4C /* InitialController.swift */; };
@@ -45,6 +49,10 @@
 		2407E4F71F825C0100603872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2407E4FE1F8270C700603872 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		24202F731F975C97004FF5AA /* SignupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
+		24202F751F98C21E004FF5AA /* EnvironmentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentData.swift; sourceTree = "<group>"; };
+		24202F771F99A11E004FF5AA /* EnvironmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentController.swift; sourceTree = "<group>"; };
+		24202F791F99A3AE004FF5AA /* EnvironmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentCell.swift; sourceTree = "<group>"; };
+		24202F7B1F99B70F004FF5AA /* HistoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
 		24D7C0F51F86548D0020EB4C /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24D7C0F91F8667E60020EB4C /* InitialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialController.swift; sourceTree = "<group>"; };
@@ -128,11 +136,15 @@
 				24D7C0F51F86548D0020EB4C /* MainController.swift */,
 				24D7C0F91F8667E60020EB4C /* InitialController.swift */,
 				24D7C0FD1F866D350020EB4C /* GameController.swift */,
+				24202F771F99A11E004FF5AA /* EnvironmentController.swift */,
+				24202F791F99A3AE004FF5AA /* EnvironmentCell.swift */,
 				24D7C1011F95BDEA0020EB4C /* HistoryController.swift */,
 				24D7C1031F95BE390020EB4C /* HistoryCell.swift */,
 				24D7C12F1F9734FD0020EB4C /* AboutController.swift */,
 				24D7C12D1F9726B30020EB4C /* Player.swift */,
 				24D7C0FB1F866B290020EB4C /* GameSetting.swift */,
+				24202F751F98C21E004FF5AA /* EnvironmentData.swift */,
+				24202F7B1F99B70F004FF5AA /* HistoryData.swift */,
 			);
 			path = FIT5140Final;
 			sourceTree = "<group>";
@@ -299,9 +311,13 @@
 				24D7C1211F9611650020EB4C /* STLVideoFunctions.m in Sources */,
 				24D7C0FC1F866B290020EB4C /* GameSetting.swift in Sources */,
 				24D7C0FE1F866D350020EB4C /* GameController.swift in Sources */,
+				24202F761F98C21E004FF5AA /* EnvironmentData.swift in Sources */,
 				24D7C1121F95EA390020EB4C /* GiFHUD.swift in Sources */,
+				24202F781F99A11E004FF5AA /* EnvironmentController.swift in Sources */,
 				24D7C0F61F86548D0020EB4C /* MainController.swift in Sources */,
+				24202F7A1F99A3AE004FF5AA /* EnvironmentCell.swift in Sources */,
 				24D7C1021F95BDEA0020EB4C /* HistoryController.swift in Sources */,
+				24202F7C1F99B70F004FF5AA /* HistoryData.swift in Sources */,
 				24202F741F975C97004FF5AA /* SignupController.swift in Sources */,
 				24D7C0FA1F8667E60020EB4C /* InitialController.swift in Sources */,
 				24D7C10E1F95D8640020EB4C /* MMShareSheet.swift in Sources */,

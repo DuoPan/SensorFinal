@@ -1,32 +1,32 @@
 //
-//  HistoryController.swift
+//  EnvironmentController.swift
 //  FIT5140Final
 //
-//  Created by duo pan on 17/10/17.
+//  Created by duo pan on 20/10/17.
 //  Copyright © 2017 duo pan. All rights reserved.
 //
 
 import UIKit
 
-class HistoryController: UITableViewController {
+class EnvironmentController: UITableViewController {
 
-    var historyList: [HistoryData]!
+    var envData : EnvironmentData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        
+        envData = EnvironmentData()
+        download()
     }
 
+    func download()
+    {
+        envData.temperature = 20;
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
     // MARK: - Table view data source
@@ -38,36 +38,26 @@ class HistoryController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return historyList.count + 1
+        return 2
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! HistoryCell
-        if indexPath.row == 0 {
-            cell.imageView?.image = #imageLiteral(resourceName: "icon_status")
-            cell.number.text = "No"
-            cell.name.text = "Event"
-            cell.valueChange.text = "Score"
-            cell.totalScore.text = "Total"
-        }
-        else{
-            if(historyList[indexPath.row - 1].valueChange == 1){                
-                cell.imageView?.image = #imageLiteral(resourceName: "icon_right")
-            }
-            else{
-                cell.imageView?.image = #imageLiteral(resourceName: "icon_wrong")
-            }
-            cell.number.text = String(historyList[indexPath.row - 1].number)
-            cell.name.text = historyList[indexPath.row - 1].name
-            cell.valueChange.text = String(historyList[indexPath.row - 1].valueChange)
-            cell.totalScore.text = String(historyList[indexPath.row - 1].totalScore)
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "envCell", for: indexPath) as! EnvironmentCell
+        cell.imageView?.image = #imageLiteral(resourceName: "icon_temp")
+        // change image size later
+//        let itemSize = CGSize(width:30.0, height:30.0)
+//        UIGraphicsBeginImageContextWithOptions(itemSize, false, 0.0)
+//        let imageRect = CGRect(x:0.0, y:0.0, width:itemSize.width, height:itemSize.height)
+//        cell.imageView?.image!.draw(in:imageRect)
+//        cell.imageView?.image! = UIGraphicsGetImageFromCurrentImageContext()!
+//        UIGraphicsEndImageContext()
         
-
+        cell.attribute.text = "Temperature"
+        cell.value.text = String(self.envData.temperature)
         return cell
     }
-    
+ 
 
     /*
     // Override to support conditional editing of the table view.

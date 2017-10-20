@@ -15,14 +15,14 @@ class InitialController: UIViewController {
     @IBOutlet var tfMissionInterval: UITextField!
     @IBOutlet var tfLowTemp: UITextField!
     @IBOutlet var tfHighTemp: UITextField!
+    @IBOutlet var tfMissionDuration: UITextField!
     
     @IBOutlet var imageView: UIImageView!
     
     var imageName = "tree1"
     
     var settings = GameSetting()
-    var allMissions :[String] = []
-   
+
     var background: UIView?
     
     override func viewDidLoad() {
@@ -88,7 +88,6 @@ class InitialController: UIViewController {
             let controller = segue.destination as! GameController
             getSettings()
             controller.settings = self.settings
-            controller.allMissions = self.allMissions
         }
     }
     
@@ -99,18 +98,11 @@ class InitialController: UIViewController {
         settings.initialHP = Int(tfInitialHP.text!)!
         settings.maxHP = Int(tfMaxHP.text!)!
         settings.missionInterval = Int(tfMissionInterval.text!)!
+        settings.missionDuration = Int(tfMissionDuration.text!)!
         settings.lowTemperature = Int(tfLowTemp.text!)!
         settings.highTemperature = Int(tfHighTemp.text!)!
-        let num = settings.maxHP - settings.initialHP
-        allMissions.removeAll()
-        for _ in 0...num{
-            allMissions.append(settings.missions[getRandomMission()])            
-        }
+        settings.currTree = self.imageName
     }
     
-    func getRandomMission() -> Int
-    {
-        let range = settings.missions.count
-        return Int(arc4random_uniform(UInt32(range)))
-    }
+
 }

@@ -19,20 +19,18 @@ class GameController: UIViewController {
     
     
     var settings: GameSetting!
-    var allMissions : [String]!
     var missionTime:Int!
     var nextMissionTime: Int!
-    var timerCurMission:Timer!
-    var timerNextMission:Timer!
-    var timer = Timer() // fetch sensor data
+    var timerMission:Timer!
+    var timerJudge: Timer!
     var isMission:Bool! = true
     var curPoints: Int!
     var tarPoints:Int!
-    var missionNo = 0
-    var curLowTemp: Int!
-    var curHighTemp: Int!
- 
-    
+    var currMission: Int!
+    var missionEnv = EnvironmentData()
+    var currEnv = EnvironmentData()
+    var historyNo: Int!
+    var historyList:[HistoryData]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,20 +38,14 @@ class GameController: UIViewController {
         // Change words on Navigation bar back item
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "加个啥呢", style: .done, target: self, action: #selector(menu))
 
-        
-        
         curPoints = settings.initialHP
         tarPoints = settings.maxHP
         target.text?.append(String(settings.maxHP))
         points.text = String(settings.initialHP)
-        mission.text = allMissions[missionNo]
+        mission.text = "nothing"
         nextMissionTime = settings.missionInterval
-        timerNextMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
-                                               selector:#selector(self.tickDown2),
-                                               userInfo:nil,repeats:true)
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self,
-                                     selector: #selector(self.fetchData),
-                                     userInfo: nil, repeats: true)
+        historyNo = 0
+        historyList = []
         
         startMission()
         calcPicture()
@@ -84,12 +76,15 @@ class GameController: UIViewController {
     
     func startMission()
     {
-        missionTime = 10
+        missionTime = settings.missionDuration
         isMission = true
-        getCurData()
-        timerCurMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+        setMissionData()
+        timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
                                                selector:#selector(self.tickDown1),
                                                userInfo:nil,repeats:true)
+        timerJudge = Timer.scheduledTimer(timeInterval: 5, target: self,
+                                          selector: #selector(self.judge),
+                                          userInfo: nil, repeats: true)
     }
     
     func tickDown1()
@@ -98,7 +93,11 @@ class GameController: UIViewController {
         missionTime! -= 1
         if(missionTime <= 0)
         {
-            timerCurMission.invalidate()
+            timerMission.invalidate()
+            timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                  selector:#selector(self.tickDown2),
+                                                  userInfo:nil,repeats:true)
+            timerJudge.invalidate()
             finishMission(isSuccess: false)
         }
     }
@@ -110,7 +109,9 @@ class GameController: UIViewController {
         if(nextMissionTime <= 0)
         {
             nextMissionTime = settings.missionInterval
+            timerMission.invalidate()
             startMission()
+            nextMissionTimeLeft.text = "0"
         }
     }
     
@@ -121,46 +122,69 @@ class GameController: UIViewController {
         if(isSuccess)
         {
             curPoints! += 1
+            print("pass mission")
         }
         else
         {
             curPoints! -= 1
+            print("fail mission")
         }
+        points.text = String(curPoints)
         
         if (curPoints! == 0)
         {
             print("game over")
+            // do sth else
         }
         if (curPoints! == tarPoints)
         {
             print("Win")
+            // do sth else
         }
-        missionNo += 1
+        
+        mission.text = "Nothing"
         calcPicture()
-        addHistory()
+        if isSuccess {
+            addHistory(vc: 1)
+        }
+        else{
+            addHistory(vc: -1)
+        }
+        
     }
 
     
-    func fetchData()
-    {
-        download()
-        if isMission
-        {
-            judge()
-        }
-        else
-        {
-            gather()
-        }
-    }
-    
     func download()
     {
+        //获取一组数据
+        //然后赋值
+        currEnv.temperature = 25 // example
     }
     
     func judge()
     {
-       // allMissions[missionNo]
+        download()
+        switch currMission
+        {
+        case 0: // The tree is on fire
+            
+            break
+        case 1: // The tree feels cold
+            if currEnv.temperature - missionEnv.temperature > 1 // become hotter
+            {
+                finishMission(isSuccess: true)
+            }
+            break
+        case 2: // The tree feels hot
+            if currEnv.temperature - missionEnv.temperature < -1 // become colder
+            {
+                finishMission(isSuccess: true)
+            }
+            break
+        default:
+            break
+        }
+        
     }
     
     func gather()
@@ -168,14 +192,19 @@ class GameController: UIViewController {
         
     }
     
-    func addHistory()
+    func addHistory(vc:Int)
     {
-        
+        historyNo! += 1
+        let his = HistoryData(number: historyNo, name: settings.missions[currMission], valueChange: vc, totalScore: curPoints)
+        historyList.append(his)
     }
     
-    func getCurData()
+    func setMissionData()
     {
-        
+        download()
+        missionEnv = currEnv
+        currMission = getRandomMission()
+        mission.text = settings.missions[currMission]
     }
 
     // go to login page
@@ -228,37 +257,37 @@ class GameController: UIViewController {
             [
                 [
                     "title": "History",
-                    "icon": "history",
+                    "icon": "icon_history",
                     "handler": "gotoHistory"
                 ],[
                     "title": "Environment",
-                    "icon": "environment",
+                    "icon": "icon_env",
                     "handler": "gotoEnvironment"
                 ],[
                     "title": "Profile",
-                    "icon": "profile",
+                    "icon": "icon_profile",
                     "handler": "gotoProfile",
                 ],[
-                    "title": "支付宝",
-                    "icon": "airpay",
-                    "handler": "airpay",
+                    "title": "Achievements",
+                    "icon": "icon_achi",
+                    "handler": "gotoAchievements",
                 ],[
-                    "title": "新浪微博",
-                    "icon": "sina",
-                    "handler": "sinawb",
+                    "title": "Ranking List",
+                    "icon": "icon_rank",
+                    "handler": "gotoRanking",
                 ]
             ],[
                 [
                     "title": "Save",
-                    "icon": "savegame",
+                    "icon": "icon_save",
                     "handler": "savegame"
                 ],[
                     "title": "Save & Exit",
-                    "icon": "saveexitgame",
+                    "icon": "icon_exitsave",
                     "handler": "saveexitgame"
                 ],[
                     "title": "Exit",
-                    "icon": "exitgame",
+                    "icon": "icon_exit",
                     "handler": "exitgame"
                 ]
             ]]
@@ -267,7 +296,7 @@ class GameController: UIViewController {
             "handler": "cancel",
             "type": "default",
             ]
-        let mmShareSheet = MMShareSheet.init(title: "Please Select", cards: cards, duration: nil, cancelBtn: cancelBtn)
+        let mmShareSheet = MMShareSheet.init(title: "Please Select (Can Slide)", cards: cards, duration: nil, cancelBtn: cancelBtn)
         mmShareSheet.callBack = { (handler) -> () in
             if handler != "cancel" {
                 if handler == "savegame" {
@@ -289,15 +318,22 @@ class GameController: UIViewController {
         mmShareSheet.present()
     }
     
+    func getRandomMission() -> Int
+    {
+        let range = settings.missions.count
+        return Int(arc4random_uniform(UInt32(range)))
+    }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "gotoHistory") {
+            let controller = segue.destination as! HistoryController
+            controller.historyList = self.historyList
+        }
     }
-    */
 
+    
 }

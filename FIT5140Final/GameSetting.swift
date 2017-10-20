@@ -13,25 +13,31 @@ class GameSetting: NSObject {
     var initialHP: Int
     var maxHP: Int
     var missionInterval: Int
+    var missionDuration: Int
     var lowTemperature: Int
     var highTemperature: Int
+    var currTree:String
     
-    var missions = ["The tree is on fire", "The tree feels cold", "The tree feels hot"]
+    var missions = ["On fire", "Too cold", "Too hot"]
     
     override init() {
         initialHP = 3
         maxHP = 10
-        missionInterval = 30
+        missionInterval = 300
         lowTemperature = 20
         highTemperature = 40
+        currTree = ""
+        missionDuration = 100
     }
     
-    init(initialHP: Int, maxHP: Int, missionInterval: Int, lowTemperature: Int, highTemperature: Int)
+    init(initialHP: Int, maxHP: Int, missionInterval: Int, missionDuration: Int, lowTemperature: Int, highTemperature: Int, currTree: String)
     {
         self.initialHP = initialHP
         self.maxHP = maxHP
+        self.missionDuration = missionDuration
         self.missionInterval = missionInterval
         self.lowTemperature = lowTemperature
         self.highTemperature = highTemperature
+        self.currTree = currTree
     }
 }
