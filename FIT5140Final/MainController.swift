@@ -13,6 +13,7 @@ class MainController: UIViewController {
 
     var firebaseRef: DatabaseReference?
     var firebaseObserverID: UInt?
+    var firebaseObserverID2: UInt?
     
     var username:String!
     var settings: GameSetting!
@@ -23,12 +24,19 @@ class MainController: UIViewController {
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Exit", style: .done, target: self, action: #selector(exitGame))
         
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+        
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
         firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
+        firebaseRef!.child(self.username + "/currentGame").removeObserver(withHandle: firebaseObserverID2!)
     }
     
     func exitGame()
@@ -50,8 +58,7 @@ class MainController: UIViewController {
             }
             else
             {
-                let ref = self.firebaseRef?.child(self.username + "/currentGame")
-                self.firebaseObserverID = ref!.observe(DataEventType.value, with: {(snapshot) in
+                self.firebaseObserverID2 = self.firebaseRef!.child(self.username + "/currentGame").observe(DataEventType.value, with: {(snapshot) in
                     for child in snapshot.children{
                         let snap = child as! DataSnapshot
                         if(snap.key == "duration"){
@@ -70,7 +77,7 @@ class MainController: UIViewController {
                             self.settings.currMission = snap.value as! String
                         }else if(snap.key == "history"){
                             let array = snap.value as! NSArray
-                            //print(array.count)
+                            print("aaa"+String(array.count))
                             // acutall 3 in firebase, I dont know why it is 4 here
                             for case let item as NSObject in array {
                                 if item is NSNull{
@@ -84,13 +91,11 @@ class MainController: UIViewController {
                                 his.valueChange = dict["vc"] as! Int
                                 self.histories.append(his)
                             }
-                            
                         }
                     }
                     self.performSegue(withIdentifier: "loadGame", sender: self.view)
                 })
             }
-            
         })
     }
     
@@ -111,6 +116,11 @@ class MainController: UIViewController {
             controller.settings = self.settings
             controller.username = self.username
             controller.historyList = self.histories
+            //controller.firebaseObserverID = self.firebaseObserverID
+        }
+        if (segue.identifier == "gotoInitial") {
+            let controller = segue.destination as! InitialController
+            controller.username = self.username
         }
     }
     

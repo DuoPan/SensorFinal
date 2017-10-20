@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class GameController: UIViewController {
 
@@ -16,6 +17,9 @@ class GameController: UIViewController {
     @IBOutlet var timeleft: UILabel!
     @IBOutlet var target: UILabel!
     @IBOutlet var nextMissionTimeLeft: UILabel!
+    
+    
+    var firebaseRef: DatabaseReference?
     
     var username:String!
     var settings: GameSetting!
@@ -76,6 +80,7 @@ class GameController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
     }
     
     func calcPicture()
@@ -244,18 +249,37 @@ class GameController: UIViewController {
     
     func saveGame()
     {
+        firebaseRef = Database.database().reference(withPath:"Savings/Players/"+self.username)
+        let newSaving = firebaseRef!.child("currentGame")
+        var cm = "no"
+        var tf = nextMissionTime
+        if nextMissionTime == settings.missionInterval{
+            cm = missions[currMission]
+            tf = missionTime
+        }
+      
+        newSaving.setValue(["currMission":cm, "duration":settings.missionDuration,
+                            "interval":settings.missionInterval, "score":curPoints, "target":tarPoints,
+                            "timeLeft":tf, "treeName":settings.currTree])
+
+        if historyList.count > 0 {
+            for var i in 0...historyList.count-1
+            {
+                let dict = ["name":historyList[i].name,"number":historyList[i].number,"total":historyList[i].totalScore,"vc":historyList[i].valueChange] as [String : AnyObject]
+                firebaseRef!.child("currentGame").child("history").child(String(i+1)).setValue(dict)
+            }
+        }
         
-        
-        
-        
+      
         //reference:
         //https://github.com/cemolcay/GiFHUD-Swift
-        GiFHUD.setGif("hud1.gif")
-        GiFHUD.showForSeconds(1)
+        //GiFHUD.setGif("hud1.gif")
+        //GiFHUD.showForSeconds(1)
     }
     
     func exitGame()
     {
+        navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController!.popToRootViewController(animated: true)
     }
     

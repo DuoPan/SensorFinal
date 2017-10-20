@@ -52,7 +52,7 @@
                                 </constraints>
                                 <state key="normal" title="New Game" image="newgame"/>
                                 <connections>
-                                    <segue destination="0aP-ii-ZYq" kind="show" id="ykj-5D-fY5"/>
+                                    <segue destination="0aP-ii-ZYq" kind="show" identifier="gotoInitial" id="ykj-5D-fY5"/>
                                 </connections>
                             </button>
                         </subviews>

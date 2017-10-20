@@ -20,7 +20,7 @@ class InitialController: UIViewController {
     var imageName = "tree1"
     
     var settings = GameSetting()
-
+    var username:String!
     var background: UIView?
     
     override func viewDidLoad() {
@@ -86,6 +86,8 @@ class InitialController: UIViewController {
             let controller = segue.destination as! GameController
             getSettings()
             controller.settings = self.settings
+            controller.username = self.username
+            controller.historyList = []
         }
     }
     
@@ -98,6 +100,8 @@ class InitialController: UIViewController {
         settings.missionInterval = Int(tfMissionInterval.text!)!
         settings.missionDuration = Int(tfMissionDuration.text!)!
         settings.currTree = self.imageName
+        settings.currMission = "no"
+        settings.timeLeft = Int(tfMissionInterval.text!)!
     }
     
 
