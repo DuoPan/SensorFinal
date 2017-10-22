@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class GameController: UIViewController {
+    
 
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var points: UILabel!
@@ -34,11 +35,13 @@ class GameController: UIViewController {
     var currEnv = EnvironmentData()
     var historyNo: Int!
     var historyList:[HistoryData]!
+    var totalScore:Int!
     
     var missions = ["On fire", "Too cold", "Too hot"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         // Change words on Navigation bar back item
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "加个啥呢", style: .done, target: self, action: #selector(menu))
@@ -77,6 +80,9 @@ class GameController: UIViewController {
                                               userInfo: nil, repeats: true)
         }
         calcPicture()
+        
+        print("aaa")
+        print(self.totalScore)
     }
 
     override func didReceiveMemoryWarning() {
@@ -150,11 +156,13 @@ class GameController: UIViewController {
         {
             curPoints! += 1
             print("pass mission")
+            totalScore! += 1
         }
         else
         {
             curPoints! -= 1
             print("fail mission")
+            totalScore! -= 1
         }
         points.text = String(curPoints)
         
@@ -251,6 +259,9 @@ class GameController: UIViewController {
     func saveGame()
     {
         firebaseRef = Database.database().reference(withPath:"Savings/Players/"+self.username)
+        
+        firebaseRef?.setValue(["score":totalScore])
+        
         let newSaving = firebaseRef!.child("currentGame")
         var cm = "no"
         var tf = nextMissionTime
@@ -271,7 +282,6 @@ class GameController: UIViewController {
             }
         }
         
-      
         //reference:
         //https://github.com/cemolcay/GiFHUD-Swift
         GiFHUD.setGif("hud1.gif")

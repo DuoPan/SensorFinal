@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class RankingDetailController: UIViewController {
 
     @IBOutlet var labelName: UILabel!
+    @IBOutlet var imageView: UIImageView!
  
+    
+    let storage = Storage.storage(url:"gs://fit5140-e5b30.appspot.com")
+    var storageRef: StorageReference?
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,7 +50,22 @@ class RankingDetailController: UIViewController {
     }
     
     func refreshUI() {
-        labelName?.text = player.name
+        if (player == nil){
+            labelName?.text = "Loading..."
+        }
+        else{
+            labelName?.text = player.name
+            storageRef = storage.reference()
+            var photoRef = storageRef?.child((labelName?.text!)! + ".png")
+            photoRef?.getData(maxSize: 1 * 10240 * 10240) { data, error in
+                if let error = error {
+                    self.imageView.image = #imageLiteral(resourceName: "default")
+                } else {
+                    let image = UIImage(data: data!)
+                    self.imageView.image = image
+                }
+            }
+        }
     }
     
     

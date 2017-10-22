@@ -23,6 +23,8 @@ class InitialController: UIViewController {
     var username:String!
     var background: UIView?
     
+    var totalScore:Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,6 +90,7 @@ class InitialController: UIViewController {
             controller.settings = self.settings
             controller.username = self.username
             controller.historyList = []
+            controller.totalScore = self.totalScore
         }
     }
     

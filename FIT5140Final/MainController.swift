@@ -18,6 +18,7 @@ class MainController: UIViewController {
     var username:String!
     var settings: GameSetting!
     var histories:[HistoryData]!
+    var totalScore:Int!
     
     var isBack:Bool!
     
@@ -27,15 +28,30 @@ class MainController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Exit", style: .done, target: self, action: #selector(exitGame))
         
         isBack = true
-        
+        download() // download total score
     }
 
+    func download(){
+        firebaseRef = Database.database().reference(withPath:"Savings/Players")
+        firebaseRef?.child(self.username).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let score = value?["score"] as? Int
+            if score == nil{
+                self.totalScore = 0
+            }else{
+                self.totalScore = score
+            }
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        firebaseRef!.child(self.username).removeAllObservers()
+        
         if isBack {
         }else{
             firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
@@ -53,7 +69,6 @@ class MainController: UIViewController {
         settings = GameSetting()
         histories = []
         
-        firebaseRef = Database.database().reference(withPath:"Savings/Players")
         firebaseObserverID = firebaseRef!.observe(DataEventType.value, with: {(snapshot) in
             if !snapshot.hasChild(self.username)
             {
@@ -62,6 +77,7 @@ class MainController: UIViewController {
             }
             else
             {
+            
                 self.firebaseObserverID2 = self.firebaseRef!.child(self.username + "/currentGame").observe(DataEventType.value, with: {(snapshot) in
                     for child in snapshot.children{
                         let snap = child as! DataSnapshot
@@ -120,11 +136,12 @@ class MainController: UIViewController {
             controller.settings = self.settings
             controller.username = self.username
             controller.historyList = self.histories
-            //controller.firebaseObserverID = self.firebaseObserverID
+            controller.totalScore = self.totalScore
         }
         if (segue.identifier == "gotoInitial") {
             let controller = segue.destination as! InitialController
             controller.username = self.username
+            controller.totalScore = self.totalScore
         }
     }
     

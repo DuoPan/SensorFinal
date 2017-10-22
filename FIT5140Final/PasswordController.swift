@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class PasswordController: UIViewController {
 
@@ -18,11 +19,19 @@ class PasswordController: UIViewController {
     var firebaseObserverID: UInt?
     var playerList:[Player]?
     
+    var managedContext: NSManagedObjectContext?
+    var appDelegate: AppDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(backToPrevious))
         self.view.backgroundColor =  UIColor(patternImage: #imageLiteral(resourceName: "loginbg"))
+        
+        
+        appDelegate = UIApplication.shared.delegate as? AppDelegate
+        managedContext = appDelegate?.persistentContainer.viewContext
+        fetchLastLogin()
         
         playerList = [Player]()
         download()
@@ -81,7 +90,20 @@ class PasswordController: UIViewController {
         
     }
     
-    
+    func fetchLastLogin()
+    {
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        do {
+            let user = try managedContext?.fetch(userFetch) as? [User]
+            if(user?.count == 0){
+                return
+            }
+            labelID.text = user?[0].name
+            labelPassword.text = user?[0].password
+        } catch {
+            fatalError("Failed to fetch category list: \(error)")
+        }
+    }
 
     
     // MARK: - Navigation
@@ -91,8 +113,32 @@ class PasswordController: UIViewController {
         if (segue.identifier == "gotoMain") {
             let controller = segue.destination as! MainController
             controller.username = self.labelID.text
+            saveLastUser()
         }
     }
     
+    func saveLastUser()
+    {
+        let lastFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        var lastUser : [User]?
+        do {
+            lastUser = try managedContext?.fetch(lastFetch) as? [User]
+            if(lastUser?.count == 0)
+            {
+                // save new into core data
+                let u = NSEntityDescription.insertNewObject(forEntityName: "User", into: managedContext!) as! User
+                u.name = labelID.text
+                u.password = labelPassword.text
+            }else{// update category into core data
+                lastUser?[0].name = labelID.text
+                lastUser?[0].password = labelPassword.text
+            }
+        } catch {
+            fatalError("Failed to fetch category list: \(error)")
+        }
+        
+        
+        appDelegate?.saveContext()
+    }
 
 }

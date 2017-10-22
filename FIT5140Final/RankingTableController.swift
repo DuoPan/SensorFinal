@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol PlayerSelectionDelegate: class {
     func playerSelected(newPlayer: RankingData)
@@ -15,15 +16,15 @@ protocol PlayerSelectionDelegate: class {
 class RankingTableController: UITableViewController {
 
     var players = [RankingData]()
+    
+    var firebaseRef: DatabaseReference?
+    var firebaseObserverID: UInt?
+    
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        self.players.append(RankingData(name: "Cat-Bot"))
-        self.players.append(RankingData(name: "Dog-Bot"))
-        self.players.append(RankingData(name: "Explode-Bot"))
-        self.players.append(RankingData(name: "Fire-Bot"))
-        self.players.append(RankingData(name: "Ice-Bot"))
-        self.players.append(RankingData(name: "Mini-Tomato-Bot"))
+        
+        download()
     }
     
     weak var delegate: PlayerSelectionDelegate?
@@ -39,9 +40,26 @@ class RankingTableController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    func download()
+    {
+        firebaseRef = Database.database().reference(withPath:"Savings/Players")
+        firebaseObserverID = firebaseRef!.observe(DataEventType.value, with: {(snapshot) in
+            for child in snapshot.children{
+                let snap = child as! DataSnapshot
+                let dict = snap.value as! [String: AnyObject]
+                let s = dict["score"] as! Int
+                let n = snap.key
+                let p = RankingData(name:n,score:s)
+                self.players.append(p)
+            }
+        })
+
+    }
 
     func backToPrevious()
     {
+        firebaseRef?.removeAllObservers()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -68,7 +86,7 @@ class RankingTableController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rankingCell", for: indexPath) as! RankingTableCell
         
         let selectedPlayer = self.players[indexPath.row]
-        cell.username.text = selectedPlayer.name
+        cell.username.text = "\(indexPath.row)   " + selectedPlayer.name + "   \(selectedPlayer.score)"
 
         return cell
     }
