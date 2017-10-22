@@ -19,24 +19,28 @@ class MainController: UIViewController {
     var settings: GameSetting!
     var histories:[HistoryData]!
     
+    var isBack:Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Exit", style: .done, target: self, action: #selector(exitGame))
         
+        isBack = true
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-        
-        
+
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
-        firebaseRef!.child(self.username + "/currentGame").removeObserver(withHandle: firebaseObserverID2!)
+        if isBack {
+        }else{
+            firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
+            firebaseRef!.child(self.username + "/currentGame").removeObserver(withHandle: firebaseObserverID2!)
+        }
     }
     
     func exitGame()
@@ -93,6 +97,7 @@ class MainController: UIViewController {
                             }
                         }
                     }
+                    self.isBack = false
                     self.performSegue(withIdentifier: "loadGame", sender: self.view)
                 })
             }

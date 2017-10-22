@@ -56,6 +56,7 @@ class GameController: UIViewController {
                                                 selector:#selector(self.tickDown2),
                                                 userInfo:nil,repeats:true)
             mission.text = "nothing"
+            missionTime = 0
         }
         else{
             missionTime = settings.timeLeft
@@ -176,7 +177,7 @@ class GameController: UIViewController {
         else{
             addHistory(vc: -1)
         }
-        
+        missionTime = 0
     }
 
     
@@ -273,8 +274,8 @@ class GameController: UIViewController {
       
         //reference:
         //https://github.com/cemolcay/GiFHUD-Swift
-        //GiFHUD.setGif("hud1.gif")
-        //GiFHUD.showForSeconds(1)
+        GiFHUD.setGif("hud1.gif")
+        GiFHUD.showForSeconds(1)
     }
     
     func exitGame()
@@ -346,11 +347,12 @@ class GameController: UIViewController {
                 }
                 else if handler == "saveexitgame"
                 {
-                    
+                    self.saveGame()
+                    self.exitGame()
                 }
                 else if handler == "exitgame"
                 {
-                    self.navigationController!.popToRootViewController(animated: true)
+                    self.exitGame()
                 }
                 else{
                     self.performSegue(withIdentifier: handler, sender: self.view)
@@ -366,6 +368,18 @@ class GameController: UIViewController {
         return Int(arc4random_uniform(UInt32(range)))
     }
     
+    @IBAction func cheat(_ sender: Any) {
+        if(missionTime <= 0)
+        {
+            return
+        }
+        timerMission.invalidate()
+        timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                            selector:#selector(self.tickDown2),
+                                            userInfo:nil,repeats:true)
+        timerJudge.invalidate()
+        finishMission(isSuccess: true)
+    }
     
     // MARK: - Navigation
 
@@ -374,6 +388,17 @@ class GameController: UIViewController {
         if (segue.identifier == "gotoHistory") {
             let controller = segue.destination as! HistoryController
             controller.historyList = self.historyList
+        }
+        if(segue.identifier == "gotoRanking")
+        {
+            let splitViewController = segue.destination as! UISplitViewController
+            let leftNavController = splitViewController.viewControllers.first as! UINavigationController
+            let masterViewController = leftNavController.topViewController as! RankingTableController
+            let detailViewController = splitViewController.viewControllers.last as! RankingDetailController
+            let firstPlayer = masterViewController.players.first
+            detailViewController.player = firstPlayer
+            masterViewController.delegate = detailViewController
+
         }
     }
 
