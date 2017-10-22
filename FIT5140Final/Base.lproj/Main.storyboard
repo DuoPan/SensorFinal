@@ -550,6 +550,7 @@
                         <outlet property="imageView" destination="kjn-pB-KYh" id="lyr-0i-Hmu"/>
                         <outlet property="tfName" destination="XRd-fr-XH5" id="ci0-Qh-9Bf"/>
                         <outlet property="tfPassword" destination="mFW-UQ-lJa" id="d4S-QN-qRk"/>
+                        <outlet property="tfScore" destination="0N1-LF-eTq" id="pJ2-nt-iNV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syp-Ti-5Lw" userLabel="First Responder" sceneMemberID="firstResponder"/>

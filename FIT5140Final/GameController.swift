@@ -80,9 +80,6 @@ class GameController: UIViewController {
                                               userInfo: nil, repeats: true)
         }
         calcPicture()
-        
-        print("aaa")
-        print(self.totalScore)
     }
 
     override func didReceiveMemoryWarning() {
@@ -413,6 +410,7 @@ class GameController: UIViewController {
         {
             let controller = segue.destination as! ProfileController
             controller.username = self.username
+            controller.score = self.totalScore
         }
     }
 

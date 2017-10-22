@@ -22,10 +22,12 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
     var player:Player?
     
     var username:String!
+    var score:Int!
     
     @IBOutlet var tfName: UITextField!
     @IBOutlet var tfPassword: UITextField!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var tfScore: UILabel!
     
     
     override func viewDidLoad() {
@@ -37,6 +39,7 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         tfName.isEnabled = false
         tfPassword.isEnabled = false
         self.imageView.contentMode = .scaleAspectFit
+        tfScore.text = String(score)
         
         storageRef = storage.reference()
         var photoRef = storageRef?.child(username + ".png")
@@ -49,7 +52,8 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
                 self.imageView.image = image
             }
         }
-        
+        print("aaa")
+        print(tfScore.text)
     }
 
     override func didReceiveMemoryWarning() {

@@ -53,6 +53,7 @@ class RankingTableController: UITableViewController {
                 let p = RankingData(name:n,score:s)
                 self.players.append(p)
             }
+            self.players.sort(by: {$0.score > $1.score})
         })
 
     }
