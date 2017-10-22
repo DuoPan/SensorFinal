@@ -81,7 +81,6 @@ class MainController: UIViewController {
                             self.settings.currMission = snap.value as! String
                         }else if(snap.key == "history"){
                             let array = snap.value as! NSArray
-                            print("aaa"+String(array.count))
                             // acutall 3 in firebase, I dont know why it is 4 here
                             for case let item as NSObject in array {
                                 if item is NSNull{

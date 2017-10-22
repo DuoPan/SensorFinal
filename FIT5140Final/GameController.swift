@@ -311,13 +311,13 @@ class GameController: UIViewController {
                     "icon": "icon_profile",
                     "handler": "gotoProfile",
                 ],[
-                    "title": "Achievements",
-                    "icon": "icon_achi",
-                    "handler": "gotoAchievements",
-                ],[
                     "title": "Ranking List",
                     "icon": "icon_rank",
                     "handler": "gotoRanking",
+                ],[
+                    "title": "To be continue",
+                    "icon": "icon_achi",
+                    "handler": "gotoAchievements",
                 ]
             ],[
                 [
@@ -398,7 +398,11 @@ class GameController: UIViewController {
             let firstPlayer = masterViewController.players.first
             detailViewController.player = firstPlayer
             masterViewController.delegate = detailViewController
-
+        }
+        if(segue.identifier == "gotoProfile")
+        {
+            let controller = segue.destination as! ProfileController
+            controller.username = self.username
         }
     }
 

@@ -21,6 +21,7 @@
 		24202F801F9B6D7B004FF5AA /* RankingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F7F1F9B6D7B004FF5AA /* RankingTableCell.swift */; };
 		24202F821F9B6D91004FF5AA /* RankingDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F811F9B6D91004FF5AA /* RankingDetailController.swift */; };
 		24202F841F9B80F8004FF5AA /* RankingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F831F9B80F8004FF5AA /* RankingData.swift */; };
+		24202F861F9C391E004FF5AA /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F851F9C391E004FF5AA /* ProfileController.swift */; };
 		24D7C0F61F86548D0020EB4C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F51F86548D0020EB4C /* MainController.swift */; };
 		24D7C0F81F8654E90020EB4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */; };
 		24D7C0FA1F8667E60020EB4C /* InitialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F91F8667E60020EB4C /* InitialController.swift */; };
@@ -61,6 +62,7 @@
 		24202F7F1F9B6D7B004FF5AA /* RankingTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableCell.swift; sourceTree = "<group>"; };
 		24202F811F9B6D91004FF5AA /* RankingDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingDetailController.swift; sourceTree = "<group>"; };
 		24202F831F9B80F8004FF5AA /* RankingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingData.swift; sourceTree = "<group>"; };
+		24202F851F9C391E004FF5AA /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		24D7C0F51F86548D0020EB4C /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24D7C0F91F8667E60020EB4C /* InitialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				24D7C0FD1F866D350020EB4C /* GameController.swift */,
 				24202F771F99A11E004FF5AA /* EnvironmentController.swift */,
 				24202F791F99A3AE004FF5AA /* EnvironmentCell.swift */,
+				24202F851F9C391E004FF5AA /* ProfileController.swift */,
 				24D7C1011F95BDEA0020EB4C /* HistoryController.swift */,
 				24D7C1031F95BE390020EB4C /* HistoryCell.swift */,
 				24202F7D1F9B6D58004FF5AA /* RankingTableController.swift */,
@@ -263,12 +266,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FIT5140Final/Pods-FIT5140Final-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -323,6 +328,7 @@
 				24D7C1211F9611650020EB4C /* STLVideoFunctions.m in Sources */,
 				24202F7E1F9B6D58004FF5AA /* RankingTableController.swift in Sources */,
 				24D7C0FC1F866B290020EB4C /* GameSetting.swift in Sources */,
+				24202F861F9C391E004FF5AA /* ProfileController.swift in Sources */,
 				24D7C0FE1F866D350020EB4C /* GameController.swift in Sources */,
 				24202F761F98C21E004FF5AA /* EnvironmentData.swift in Sources */,
 				24202F801F9B6D7B004FF5AA /* RankingTableCell.swift in Sources */,

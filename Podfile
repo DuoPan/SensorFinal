@@ -8,5 +8,6 @@ target 'FIT5140Final' do
   # Pods for FIT5140Final
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   
 end

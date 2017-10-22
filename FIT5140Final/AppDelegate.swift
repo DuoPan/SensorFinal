@@ -15,20 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
-        
-        //Master-Detail
-//        let splitViewController = self.window!.rootViewController as! UISplitViewController
-//        let leftNavController = splitViewController.viewControllers.first as! UINavigationController
-//        let masterViewController = leftNavController.topViewController as! RankingTableController
-//        let detailViewController = splitViewController.viewControllers.last as! RankingDetailController
-//        let firstPlayer = masterViewController.players.first
-//        detailViewController.player = firstPlayer
-//        masterViewController.delegate = detailViewController
+
         
         return true
     }
