@@ -113,6 +113,10 @@ class MainController: UIViewController {
                         }
                     }
                     self.isBack = false
+                    if(self.settings.initialHP == self.settings.maxHP){
+                        self.showMessage(msg: "You have finished last game, please start a new game")
+                        return
+                    }
                     self.performSegue(withIdentifier: "loadGame", sender: self.view)
                 })
             }

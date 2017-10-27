@@ -23,11 +23,13 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
     
     var username:String!
     var score:Int!
+    var treename:String!
     
     @IBOutlet var tfName: UITextField!
     @IBOutlet var tfPassword: UITextField!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var tfScore: UILabel!
+    @IBOutlet var treeImgView: UIImageView!
     
     
     override func viewDidLoad() {
@@ -39,7 +41,7 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         tfName.isEnabled = false
         tfPassword.isEnabled = false
         self.imageView.contentMode = .scaleAspectFit
-        tfScore.text = String(score)
+        tfScore.text = "Your currently score is \(score!)"
         
         storageRef = storage.reference()
         var photoRef = storageRef?.child(username + ".png")
@@ -52,8 +54,9 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
                 self.imageView.image = image
             }
         }
-        print("aaa")
-        print(tfScore.text)
+        
+        imageView.layer.borderWidth = 1
+        treeImgView.image = UIImage(named: self.treename)
     }
 
     override func didReceiveMemoryWarning() {

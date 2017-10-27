@@ -24,7 +24,7 @@ class SignupController: UIViewController {
 
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(backToPrevious))
-        
+        self.view.backgroundColor =  UIColor(patternImage: #imageLiteral(resourceName: "loginbg"))
         nameList = [String]()
         download()
     }

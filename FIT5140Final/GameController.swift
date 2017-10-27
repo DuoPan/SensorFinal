@@ -18,6 +18,7 @@ class GameController: UIViewController {
     @IBOutlet var timeleft: UILabel!
     @IBOutlet var target: UILabel!
     @IBOutlet var nextMissionTimeLeft: UILabel!
+    @IBOutlet var progressView: UIProgressView!
     
     
     var firebaseRef: DatabaseReference?
@@ -45,6 +46,8 @@ class GameController: UIViewController {
         
         // Change words on Navigation bar back item
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "加个啥呢", style: .done, target: self, action: #selector(menu))
+        
+        progressView.transform = CGAffineTransform(scaleX: 1.0, y: 5.0)
 
         curPoints = settings.initialHP
         tarPoints = settings.maxHP
@@ -54,6 +57,7 @@ class GameController: UIViewController {
         
         if(settings.currMission == "no")
         {
+            progressView.progress = 1 - (Float(settings.timeLeft) / Float(settings.missionInterval))
             nextMissionTime = settings.timeLeft
             timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
                                                 selector:#selector(self.tickDown2),
@@ -62,6 +66,7 @@ class GameController: UIViewController {
             missionTime = 0
         }
         else{
+            progressView.progress = 1 - (Float(settings.timeLeft) / Float(settings.missionDuration))
             missionTime = settings.timeLeft
             mission.text = settings.currMission
             for var i in 0...missions.count {
@@ -122,7 +127,8 @@ class GameController: UIViewController {
     {
         timeleft.text = "Time Left \(missionTime!) s"
         missionTime! -= 1
-        if(missionTime <= 0)
+        progressView.progress += 1.0 / Float(settings.missionDuration)
+        if(missionTime < 0)
         {
             timerMission.invalidate()
             timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
@@ -130,6 +136,7 @@ class GameController: UIViewController {
                                                   userInfo:nil,repeats:true)
             timerJudge.invalidate()
             finishMission(isSuccess: false)
+            progressView.progress = 0
         }
     }
     
@@ -137,12 +144,14 @@ class GameController: UIViewController {
     {
         nextMissionTimeLeft.text = "Next Mission Will in \(nextMissionTime!) s"
         nextMissionTime! -= 1
-        if(nextMissionTime <= 0)
+        progressView.progress += 1.0 / Float(settings.missionInterval)
+        if(nextMissionTime < 0)
         {
             nextMissionTime = settings.missionInterval
             timerMission.invalidate()
             startMission()
             nextMissionTimeLeft.text = "0"
+            progressView.progress = 0
         }
     }
     
@@ -166,12 +175,19 @@ class GameController: UIViewController {
         if (curPoints! == 0)
         {
             print("game over")
-            // do sth else
+            exitGame() // this line must put before showMessage
+            showMessage(msg: "Lose Game")
+           // GiFHUD.setGif("gameover.png")
+           // GiFHUD.showForSeconds(2)
+            return
         }
         if (curPoints! == tarPoints)
         {
             print("Win")
-            // do sth else
+            saveGame()
+            exitGame()
+            showMessage(msg: "You Win")
+            return
         }
         
         mission.text = "Nothing"
@@ -279,10 +295,6 @@ class GameController: UIViewController {
             }
         }
         
-        //reference:
-        //https://github.com/cemolcay/GiFHUD-Swift
-        GiFHUD.setGif("hud1.gif")
-        GiFHUD.showForSeconds(1)
     }
     
     func exitGame()
@@ -351,11 +363,17 @@ class GameController: UIViewController {
             if handler != "cancel" {
                 if handler == "savegame" {
                     self.saveGame()
+                    //reference:
+                    //https://github.com/cemolcay/GiFHUD-Swift
+                    GiFHUD.setGif("hud1.gif")
+                    GiFHUD.showForSeconds(0.5)
                 }
                 else if handler == "saveexitgame"
                 {
                     self.saveGame()
                     self.exitGame()
+                    GiFHUD.setGif("hud1.gif")
+                    GiFHUD.showForSeconds(0.5)
                 }
                 else if handler == "exitgame"
                 {
@@ -411,6 +429,7 @@ class GameController: UIViewController {
             let controller = segue.destination as! ProfileController
             controller.username = self.username
             controller.score = self.totalScore
+            controller.treename = self.settings.currTree
         }
     }
 
