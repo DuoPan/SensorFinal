@@ -25,7 +25,7 @@ class ReferenceController: UIViewController {
                     self.webView.loadRequest(request)
                 }
                 else{
-                    print(error)
+                    print(error!)
                 }
             }
             task.resume()

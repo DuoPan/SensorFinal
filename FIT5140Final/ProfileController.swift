@@ -44,9 +44,9 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         tfScore.text = "Your currently score is \(score!)"
         
         storageRef = storage.reference()
-        var photoRef = storageRef?.child(username + ".png")
+        let photoRef = storageRef?.child(username + ".png")
         photoRef?.getData(maxSize: 1 * 10240 * 10240) { data, error in
-            if let error = error {
+            if let _ = error {
                 self.showMessage(msg: "Your photo size is too large!")
                 self.imageView.image = #imageLiteral(resourceName: "default")
             } else {

@@ -29,20 +29,21 @@ class GameController: UIViewController {
     var nextMissionTime: Int!
     var timerMission:Timer!
     var timerJudge: Timer!
+    var timerAlarm: Timer!
     var curPoints: Int!
     var tarPoints:Int!
     var currMission: Int!
-    var missionEnv = EnvironmentData()
-    var currEnv = EnvironmentData()
+    var missionEnv:EnvironmentData!
+    var currEnv:EnvironmentData!
     var historyNo: Int!
     var historyList:[HistoryData]!
     var totalScore:Int!
     
-    var missions = ["On fire", "Too cold", "Too hot"]
+    var missions = ["Water tree", "Need light", "Too cold", "Too hot", "On fire"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        currEnv = EnvironmentData()
         
         // Change words on Navigation bar back item
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "加个啥呢", style: .done, target: self, action: #selector(menu))
@@ -55,6 +56,10 @@ class GameController: UIViewController {
         points.text = String(settings.initialHP)
         historyNo = historyList.count
         
+        timerAlarm = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                          selector:#selector(self.alarm),
+                                          userInfo:nil,repeats:true)
+        
         if(settings.currMission == "no")
         {
             progressView.progress = 1 - (Float(settings.timeLeft) / Float(settings.missionInterval))
@@ -65,11 +70,13 @@ class GameController: UIViewController {
             mission.text = "nothing"
             missionTime = 0
         }
+            
         else{
             progressView.progress = 1 - (Float(settings.timeLeft) / Float(settings.missionDuration))
             missionTime = settings.timeLeft
             mission.text = settings.currMission
-            for var i in 0...missions.count {
+            
+            for i in 0...missions.count {
                 if missions[i] == settings.currMission
                 {
                     currMission = i
@@ -206,7 +213,51 @@ class GameController: UIViewController {
     {
         //获取一组数据
         //然后赋值
-        currEnv.temperature = 25 // example
+//        currEnv.temperature = 25 // example
+        var url: URL
+        url = URL(string: "http://192.168.1.105:8080/temperature")!
+        // fast method to get data
+        guard let envJsonData = NSData(contentsOf: url) else { return }
+        let jsonData = JSON(envJsonData)
+        if jsonData["temperature"].int != nil && jsonData["humidity"].int != nil && jsonData["light"].int != nil && jsonData["rain"].int != nil && jsonData["fire"].int != nil
+        {
+            currEnv.temperature = jsonData["temperature"].int!;
+            currEnv.humidity = jsonData["humidity"].int!;
+            currEnv.light = jsonData["light"].int!;
+            currEnv.rain = jsonData["rain"].int!;
+            currEnv.fire = jsonData["fire"].int!;
+        }
+    }
+    
+    func alarm()
+    {
+        download()
+        if (currEnv.rain == 0)
+        {
+            if (timerJudge != nil)
+            {
+                timerJudge.invalidate()
+            }
+            
+            missionTime = settings.missionDuration
+            timerMission.invalidate()
+            //start an alarm mission
+            missionEnv = EnvironmentData(env: currEnv)
+            currMission = 4 //on fire mission
+            mission.text = missions[currMission]
+            timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                selector:#selector(self.tickDown1),
+                                                userInfo:nil,repeats:true)
+            timerJudge = Timer.scheduledTimer(timeInterval: 5, target: self,
+                                              selector: #selector(self.judge),
+                                              userInfo: nil, repeats: true)
+            timerAlarm.invalidate()
+            
+            nextMissionTime = settings.missionInterval
+            nextMissionTimeLeft.text = "0"
+            progressView.progress = 0
+
+        }
     }
     
     func judge()
@@ -214,19 +265,71 @@ class GameController: UIViewController {
         download()
         switch currMission
         {
-        case 0: // The tree is on fire
-            
-            break
-        case 1: // The tree feels cold
-            if currEnv.temperature - missionEnv.temperature > 1 // become hotter
+        case 0: // need water
+            if currEnv.rain == 0
             {
+                timerMission.invalidate()
+                timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                    selector:#selector(self.tickDown2),
+                                                    userInfo:nil,repeats:true)
+                timerJudge.invalidate()
                 finishMission(isSuccess: true)
+                progressView.progress = 0
             }
             break
-        case 2: // The tree feels hot
+        case 1: // need light
+            if currEnv.light == 0
+            {
+                timerMission.invalidate()
+                timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                    selector:#selector(self.tickDown2),
+                                                    userInfo:nil,repeats:true)
+                timerJudge.invalidate()
+                finishMission(isSuccess: true)
+                progressView.progress = 0
+                
+            }
+            break
+        case 2: // Too cold
+            if currEnv.temperature - missionEnv.temperature > 1 // become colder
+            {
+                timerMission.invalidate()
+                timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                    selector:#selector(self.tickDown2),
+                                                    userInfo:nil,repeats:true)
+                timerJudge.invalidate()
+                finishMission(isSuccess: true)
+                progressView.progress = 0
+            }
+            break
+        case 3: // Too hot
             if currEnv.temperature - missionEnv.temperature < -1 // become colder
             {
+                timerMission.invalidate()
+                timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                    selector:#selector(self.tickDown2),
+                                                    userInfo:nil,repeats:true)
+                timerJudge.invalidate()
                 finishMission(isSuccess: true)
+                progressView.progress = 0
+            }
+            break
+        case 4: // On fire
+            if currEnv.rain == 1 // no fire now
+            {
+                timeleft.text = "No event now"
+                mission.text = "Nothing"
+                missionTime = 0
+
+                timerMission.invalidate()
+                timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                    selector:#selector(self.tickDown2),
+                                                    userInfo:nil,repeats:true)
+                timerJudge.invalidate()
+                timerAlarm = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                  selector:#selector(self.alarm),
+                                                  userInfo:nil,repeats:true)
+                progressView.progress = 0
             }
             break
         default:
@@ -235,6 +338,12 @@ class GameController: UIViewController {
         
     }
     
+    func getRandomMission() -> Int
+    {
+        let range = missions.count - 1
+        return Int(arc4random_uniform(UInt32(range)))
+//        return 1
+    }
 
     
     func addHistory(vc:Int)
@@ -247,7 +356,7 @@ class GameController: UIViewController {
     func setMissionData()
     {
         download()
-        missionEnv = currEnv
+        missionEnv = EnvironmentData(env: currEnv)
         currMission = getRandomMission()
         mission.text = missions[currMission]
     }
@@ -277,7 +386,7 @@ class GameController: UIViewController {
         
         let newSaving = firebaseRef!.child("currentGame")
         var cm = "no"
-        var tf = nextMissionTime
+        var tf:Int = nextMissionTime
         if nextMissionTime == settings.missionInterval{
             cm = missions[currMission]
             tf = missionTime
@@ -288,7 +397,7 @@ class GameController: UIViewController {
                             "timeLeft":tf, "treeName":settings.currTree])
 
         if historyList.count > 0 {
-            for var i in 0...historyList.count-1
+            for i in 0...historyList.count-1
             {
                 let dict = ["name":historyList[i].name,"number":historyList[i].number,"total":historyList[i].totalScore,"vc":historyList[i].valueChange] as [String : AnyObject]
                 firebaseRef!.child("currentGame").child("history").child(String(i+1)).setValue(dict)
@@ -387,11 +496,7 @@ class GameController: UIViewController {
         mmShareSheet.present()
     }
     
-    func getRandomMission() -> Int
-    {
-        let range = missions.count
-        return Int(arc4random_uniform(UInt32(range)))
-    }
+    
     
     @IBAction func cheat(_ sender: Any) {
         if(missionTime <= 0)
@@ -403,6 +508,7 @@ class GameController: UIViewController {
                                             selector:#selector(self.tickDown2),
                                             userInfo:nil,repeats:true)
         timerJudge.invalidate()
+        progressView.progress = 0
         finishMission(isSuccess: true)
     }
     

@@ -56,9 +56,9 @@ class RankingDetailController: UIViewController {
         else{
             labelName?.text = player.name
             storageRef = storage.reference()
-            var photoRef = storageRef?.child((labelName?.text!)! + ".png")
+            let photoRef = storageRef?.child((labelName?.text!)! + ".png")
             photoRef?.getData(maxSize: 1 * 10240 * 10240) { data, error in
-                if let error = error {
+                if let _ = error {
                     self.imageView.image = #imageLiteral(resourceName: "default")
                 } else {
                     let image = UIImage(data: data!)

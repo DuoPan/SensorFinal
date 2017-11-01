@@ -11,22 +11,36 @@ import UIKit
 class EnvironmentController: UITableViewController {
 
     var envData : EnvironmentData!
+    var timerGetData:Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         envData = EnvironmentData()
-        download()
+        timerGetData = Timer.scheduledTimer(timeInterval: TimeInterval(2), target:self,
+                             selector:#selector(self.download),
+                             userInfo:nil,repeats:true)
+//        download()
     }
 
     func download()
     {
-        envData.temperature = 20;
+        var url: URL
+        url = URL(string: "http://192.168.1.105:8080/temperature")!
+        // fast method to get data
+        guard let envJsonData = NSData(contentsOf: url) else { return }
+        let jsonData = JSON(envJsonData)
+        envData.temperature = jsonData["temperature"].int!;
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        timerGetData.invalidate()
     }
 
     // MARK: - Table view data source
