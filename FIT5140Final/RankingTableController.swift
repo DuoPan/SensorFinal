@@ -87,7 +87,7 @@ class RankingTableController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rankingCell", for: indexPath) as! RankingTableCell
         
         let selectedPlayer = self.players[indexPath.row]
-        cell.username.text = "\(indexPath.row)   " + selectedPlayer.name + "   \(selectedPlayer.score)"
+        cell.username.text = "\(indexPath.row + 1)   " + selectedPlayer.name + "   \(selectedPlayer.score)"
 
         return cell
     }
