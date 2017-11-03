@@ -215,7 +215,7 @@ class GameController: UIViewController {
         //然后赋值
 //        currEnv.temperature = 25 // example
         var url: URL
-        url = URL(string: "http://192.168.1.105:8080/temperature")!
+        url = URL(string: "http://192.168.1.101:8080/temperature")!
         // fast method to get data
         guard let envJsonData = NSData(contentsOf: url) else { return }
         let jsonData = JSON(envJsonData)
@@ -277,6 +277,7 @@ class GameController: UIViewController {
                 progressView.progress = 0
             }
             break
+            
         case 1: // need light
             if currEnv.light == 0
             {
@@ -290,30 +291,40 @@ class GameController: UIViewController {
                 
             }
             break
+            
         case 2: // Too cold
-            if currEnv.temperature - missionEnv.temperature > 1 // become colder
+            if currEnv != nil
             {
-                timerMission.invalidate()
-                timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
-                                                    selector:#selector(self.tickDown2),
-                                                    userInfo:nil,repeats:true)
-                timerJudge.invalidate()
-                finishMission(isSuccess: true)
-                progressView.progress = 0
+                if currEnv.temperature - missionEnv.temperature > 1 // become colder
+                {
+                    timerMission.invalidate()
+                    timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                        selector:#selector(self.tickDown2),
+                                                        userInfo:nil,repeats:true)
+                    timerJudge.invalidate()
+                    finishMission(isSuccess: true)
+                    progressView.progress = 0
+                }
             }
             break
+            
         case 3: // Too hot
-            if currEnv.temperature - missionEnv.temperature < -1 // become colder
+            if currEnv != nil
             {
-                timerMission.invalidate()
-                timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
-                                                    selector:#selector(self.tickDown2),
-                                                    userInfo:nil,repeats:true)
-                timerJudge.invalidate()
-                finishMission(isSuccess: true)
-                progressView.progress = 0
+                if currEnv.temperature - missionEnv.temperature < -1 // become colder
+                {
+                    timerMission.invalidate()
+                    timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
+                                                        selector:#selector(self.tickDown2),
+                                                        userInfo:nil,repeats:true)
+                    timerJudge.invalidate()
+                    finishMission(isSuccess: true)
+                    progressView.progress = 0
+                }
             }
+            
             break
+            
         case 4: // On fire
             if currEnv.rain == 1 // no fire now
             {
