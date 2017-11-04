@@ -23,13 +23,13 @@ class EnvironmentController: UIViewController {
         timerGetData = Timer.scheduledTimer(timeInterval: TimeInterval(2), target:self,
                              selector:#selector(self.download),
                              userInfo:nil,repeats:true)
-        download()
         
         meter.maxValue = 50.0
         meter.minValue = -10.0
         meter.glassEffect = true
-        meter.curValue = CGFloat(envData.temperature)
-        temper.text = "\(envData.temperature) ℃"
+        
+        download()
+        
     }
 
     func download()
@@ -42,7 +42,10 @@ class EnvironmentController: UIViewController {
         guard let envJsonData = NSData(contentsOf: url) else { return }
         let jsonData = JSON(envJsonData)
         envData.temperature = jsonData["temperature"].int!;
-        //self.view.load
+        
+        meter.curValue = CGFloat(envData.temperature)
+        temper.text = "\(envData.temperature) ℃"
+
     }
     
     override func didReceiveMemoryWarning() {
