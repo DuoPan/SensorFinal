@@ -13,8 +13,8 @@ protocol PlayerSelectionDelegate: class {
     func playerSelected(newPlayer: RankingData)
 }
 
-class RankingTableController: UITableViewController {
-
+class RankingTableController: UITableViewController{
+    fileprivate var collapseDetailViewController = true
     var players = [RankingData]()
     
     var firebaseRef: DatabaseReference?
@@ -23,7 +23,6 @@ class RankingTableController: UITableViewController {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        
         download()
     }
     
@@ -31,7 +30,7 @@ class RankingTableController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        splitViewController?.delegate = self
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToPrevious))
         
         // Uncomment the following line to preserve selection between presentations
@@ -39,6 +38,7 @@ class RankingTableController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//        self.tableView.reloadData()
     }
     
     func download()
@@ -93,6 +93,7 @@ class RankingTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        collapseDetailViewController = false
         let selectedPlayer = self.players[indexPath.row]
         self.delegate?.playerSelected(newPlayer: selectedPlayer)
         
@@ -100,6 +101,10 @@ class RankingTableController: UITableViewController {
             splitViewController?.showDetailViewController(detailViewController, sender: nil)
         }
     }
+    
+//    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+//        return collapseDetailViewController
+//    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -144,5 +149,14 @@ class RankingTableController: UITableViewController {
        
     }
     */
+    
 
 }
+
+extension RankingTableController: UISplitViewControllerDelegate {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return collapseDetailViewController
+    }
+}
+
+

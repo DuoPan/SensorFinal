@@ -5,6 +5,7 @@
 //  Created by duo pan on 6/10/17.
 //  Copyright © 2017 duo pan. All rights reserved.
 //
+// This controller implements main game logic. Random missions are generated after a time interval and user need to do something to complete the mission. There is an alarm function in this controller that monitors flame sensor, when tree is on fire, an alarm mission 'on fire' will occur and interrupt the current process.
 
 import UIKit
 import Firebase
@@ -20,7 +21,7 @@ class GameController: UIViewController {
     @IBOutlet var nextMissionTimeLeft: UILabel!
     @IBOutlet var progressView: UIProgressView!
     
-    
+    //firebase reference
     var firebaseRef: DatabaseReference?
     
     var username:String!
@@ -39,6 +40,7 @@ class GameController: UIViewController {
     var historyList:[HistoryData]!
     var totalScore:Int!
     
+    //pre-defined mission array. On fire is the alarm mission
     var missions = ["Water tree", "Need light", "Too cold", "Too hot", "On fire"]
     
     override func viewDidLoad() {
@@ -56,10 +58,12 @@ class GameController: UIViewController {
         points.text = String(settings.initialHP)
         historyNo = historyList.count
         
+        //set alarm timer
         timerAlarm = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
                                           selector:#selector(self.alarm),
                                           userInfo:nil,repeats:true)
         
+        //if there is no current mission, running mission generating process. tickDown2 is a function for mission generating countdown
         if(settings.currMission == "no")
         {
             progressView.progress = 1 - (Float(settings.timeLeft) / Float(settings.missionInterval))
@@ -70,7 +74,7 @@ class GameController: UIViewController {
             mission.text = "nothing"
             missionTime = 0
         }
-            
+        //otherwise run mission complete countdown
         else{
             progressView.progress = 1 - (Float(settings.timeLeft) / Float(settings.missionDuration))
             missionTime = settings.timeLeft
@@ -99,6 +103,7 @@ class GameController: UIViewController {
         
     }
     
+    //tree picture will change as current credit changes. we set four figures here
     func calcPicture()
     {
         if curPoints < tarPoints / 3 {
@@ -118,6 +123,7 @@ class GameController: UIViewController {
         }
     }
     
+    //this function is about starting a mission. Triggering the judge timmer and set mission timer to tickDown1
     func startMission()
     {
         missionTime = settings.missionDuration
@@ -129,7 +135,7 @@ class GameController: UIViewController {
                                           selector: #selector(self.judge),
                                           userInfo: nil, repeats: true)
     }
-    
+    //this function is for mission completing countdown. when a mission is generated, this function will be triggered.
     func tickDown1()
     {
         timeleft.text = "Time Left \(missionTime!) s"
@@ -146,7 +152,7 @@ class GameController: UIViewController {
             progressView.progress = 0
         }
     }
-    
+    //this function is for mission completing countdown. when a mission is generated, this function will be triggered.
     func tickDown2()
     {
         nextMissionTimeLeft.text = "Next Mission Will in \(nextMissionTime!) s"
@@ -215,7 +221,7 @@ class GameController: UIViewController {
         //然后赋值
 //        currEnv.temperature = 25 // example
         var url: URL
-        url = URL(string: "http://192.168.1.101:8080/temperature")!
+        url = URL(string: "http://192.168.1.103:8080/temperature")!
         // fast method to get data
         guard let envJsonData = NSData(contentsOf: url) else { return }
         let jsonData = JSON(envJsonData)
@@ -534,12 +540,14 @@ class GameController: UIViewController {
         if(segue.identifier == "gotoRanking")
         {
             let splitViewController = segue.destination as! UISplitViewController
+            
             let leftNavController = splitViewController.viewControllers.first as! UINavigationController
             let masterViewController = leftNavController.topViewController as! RankingTableController
             let detailViewController = splitViewController.viewControllers.last as! RankingDetailController
             let firstPlayer = masterViewController.players.first
             detailViewController.player = firstPlayer
             masterViewController.delegate = detailViewController
+            
         }
         if(segue.identifier == "gotoProfile")
         {

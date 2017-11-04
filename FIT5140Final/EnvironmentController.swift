@@ -26,7 +26,7 @@ class EnvironmentController: UITableViewController {
     func download()
     {
         var url: URL
-        url = URL(string: "http://192.168.1.101:8080/temperature")!
+        url = URL(string: "http://192.168.1.103:8080/temperature")!
         // fast method to get data
         guard let envJsonData = NSData(contentsOf: url) else { return }
         let jsonData = JSON(envJsonData)
