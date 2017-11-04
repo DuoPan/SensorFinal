@@ -18,7 +18,6 @@ class GameController: UIViewController {
     @IBOutlet var mission: UILabel!
     @IBOutlet var timeleft: UILabel!
     @IBOutlet var target: UILabel!
-    @IBOutlet var nextMissionTimeLeft: UILabel!
     @IBOutlet var progressView: UIProgressView!
     
     //firebase reference
@@ -55,7 +54,8 @@ class GameController: UIViewController {
         curPoints = settings.initialHP
         tarPoints = settings.maxHP
         target.text?.append(String(settings.maxHP))
-        points.text = String(settings.initialHP)
+        points.text = "Current Health Credits: \(String(settings.initialHP))"
+        
         historyNo = historyList.count
         
         //set alarm timer
@@ -71,14 +71,14 @@ class GameController: UIViewController {
             timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
                                                 selector:#selector(self.tickDown2),
                                                 userInfo:nil,repeats:true)
-            mission.text = "nothing"
+            mission.text = "Current Mission:    nothing"
             missionTime = 0
         }
         //otherwise run mission complete countdown
         else{
             progressView.progress = 1 - (Float(settings.timeLeft) / Float(settings.missionDuration))
             missionTime = settings.timeLeft
-            mission.text = settings.currMission
+            mission.text = "Current Mission:    \(settings.currMission)"
             
             for i in 0...missions.count {
                 if missions[i] == settings.currMission
@@ -155,7 +155,7 @@ class GameController: UIViewController {
     //this function is for mission generating countdown. after a mission is completed, this function will be triggered.
     func tickDown2()
     {
-        nextMissionTimeLeft.text = "Next Mission Will in \(nextMissionTime!) s"
+        timeleft.text = "Next Mission Will in \(nextMissionTime!) s"
         nextMissionTime! -= 1
         progressView.progress += 1.0 / Float(settings.missionInterval)
         if(nextMissionTime < 0)
@@ -163,7 +163,6 @@ class GameController: UIViewController {
             nextMissionTime = settings.missionInterval
             timerMission.invalidate()
             startMission()
-            nextMissionTimeLeft.text = "0"
             progressView.progress = 0
         }
     }
@@ -171,7 +170,7 @@ class GameController: UIViewController {
     //This function is used to handle the behavior after a mission is completed. If a mission is completed correctly, current credit will be added. Otherwise, it will minus 1 credit. 
     func finishMission(isSuccess:Bool)
     {
-        timeleft.text = "No event now"
+        timeleft.text = ""
         if(isSuccess)
         {
             curPoints! += 1
@@ -184,7 +183,7 @@ class GameController: UIViewController {
             print("fail mission")
             totalScore! -= 1
         }
-        points.text = String(curPoints)
+        points.text = "Current Health Credits: \(String(curPoints))"
         
         if (curPoints! == 0)
         {
@@ -204,7 +203,7 @@ class GameController: UIViewController {
             return
         }
         
-        mission.text = "Nothing"
+        mission.text = "Current Mission:    Nothing"
         calcPicture()
         if isSuccess {
             addHistory(vc: 1)
@@ -251,7 +250,7 @@ class GameController: UIViewController {
             //start an alarm mission
             missionEnv = EnvironmentData(env: currEnv)
             currMission = 4 //on fire mission
-            mission.text = missions[currMission]
+            mission.text = "Current Mission:    \(missions[currMission])"
             timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
                                                 selector:#selector(self.tickDown1),
                                                 userInfo:nil,repeats:true)
@@ -261,7 +260,6 @@ class GameController: UIViewController {
             timerAlarm.invalidate()
             
             nextMissionTime = settings.missionInterval
-            nextMissionTimeLeft.text = "0"
             progressView.progress = 0
 
         }
@@ -335,8 +333,8 @@ class GameController: UIViewController {
         case 4: // On fire
             if currEnv.rain == 1 // no fire now
             {
-                timeleft.text = "No event now"
-                mission.text = "Nothing"
+                timeleft.text = ""
+                mission.text = "Current Mission:    Nothing"
                 missionTime = 0
 
                 timerMission.invalidate()
@@ -376,7 +374,7 @@ class GameController: UIViewController {
         download()
         missionEnv = EnvironmentData(env: currEnv)
         currMission = getRandomMission()
-        mission.text = missions[currMission]
+        mission.text = "Current Mission:    \(missions[currMission])"
     }
 
     // go to login page
