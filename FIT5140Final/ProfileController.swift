@@ -41,7 +41,7 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         tfName.isEnabled = false
         tfPassword.isEnabled = false
         self.imageView.contentMode = .scaleAspectFit
-        tfScore.text = "Your currently score is \(score!)"
+        tfScore.text = "Your total score since registration is \(score!)"
         
         storageRef = storage.reference()
         let photoRef = storageRef?.child(username + ".png")

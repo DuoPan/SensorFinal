@@ -221,7 +221,9 @@ class GameController: UIViewController {
         //然后赋值
 //        currEnv.temperature = 25 // example
         var url: URL
-        url = URL(string: "http://192.168.1.103:8080/temperature")!
+        //url = URL(string: "http://192.168.1.103:8080/temperature")!
+        url = URL(string: "https://duopan.github.io")!
+        
         // fast method to get data
         guard let envJsonData = NSData(contentsOf: url) else { return }
         let jsonData = JSON(envJsonData)

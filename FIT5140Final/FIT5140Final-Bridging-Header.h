@@ -4,3 +4,5 @@
 
 #import "STLVideoFunctions.h"
 #import "STLVideoViewController.h"
+#import "MAThermometer.h"
+#import "MAThermometerBorder.h"

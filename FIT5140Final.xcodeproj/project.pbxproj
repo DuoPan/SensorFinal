@@ -15,7 +15,6 @@
 		24202F741F975C97004FF5AA /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F731F975C97004FF5AA /* SignupController.swift */; };
 		24202F761F98C21E004FF5AA /* EnvironmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F751F98C21E004FF5AA /* EnvironmentData.swift */; };
 		24202F781F99A11E004FF5AA /* EnvironmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F771F99A11E004FF5AA /* EnvironmentController.swift */; };
-		24202F7A1F99A3AE004FF5AA /* EnvironmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F791F99A3AE004FF5AA /* EnvironmentCell.swift */; };
 		24202F7C1F99B70F004FF5AA /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F7B1F99B70F004FF5AA /* HistoryData.swift */; };
 		24202F7E1F9B6D58004FF5AA /* RankingTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F7D1F9B6D58004FF5AA /* RankingTableController.swift */; };
 		24202F801F9B6D7B004FF5AA /* RankingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F7F1F9B6D7B004FF5AA /* RankingTableCell.swift */; };
@@ -26,6 +25,8 @@
 		24202F8C1F9C806B004FF5AA /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F8A1F9C806B004FF5AA /* User+CoreDataClass.swift */; };
 		24202F8D1F9C806B004FF5AA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202F8B1F9C806B004FF5AA /* User+CoreDataProperties.swift */; };
 		24202FD61FA20889004FF5AA /* ReferenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24202FD51FA20889004FF5AA /* ReferenceController.swift */; };
+		244825581FAE095800D7A118 /* MAThermometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 244825551FAE095800D7A118 /* MAThermometer.m */; };
+		244825591FAE095800D7A118 /* MAThermometerBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 244825571FAE095800D7A118 /* MAThermometerBorder.m */; };
 		24D7C0F61F86548D0020EB4C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F51F86548D0020EB4C /* MainController.swift */; };
 		24D7C0F81F8654E90020EB4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */; };
 		24D7C0FA1F8667E60020EB4C /* InitialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7C0F91F8667E60020EB4C /* InitialController.swift */; };
@@ -61,7 +62,6 @@
 		24202F731F975C97004FF5AA /* SignupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		24202F751F98C21E004FF5AA /* EnvironmentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentData.swift; sourceTree = "<group>"; };
 		24202F771F99A11E004FF5AA /* EnvironmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentController.swift; sourceTree = "<group>"; };
-		24202F791F99A3AE004FF5AA /* EnvironmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentCell.swift; sourceTree = "<group>"; };
 		24202F7B1F99B70F004FF5AA /* HistoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
 		24202F7D1F9B6D58004FF5AA /* RankingTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableController.swift; sourceTree = "<group>"; };
 		24202F7F1F9B6D7B004FF5AA /* RankingTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableCell.swift; sourceTree = "<group>"; };
@@ -72,6 +72,10 @@
 		24202F8A1F9C806B004FF5AA /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		24202F8B1F9C806B004FF5AA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24202FD51FA20889004FF5AA /* ReferenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceController.swift; sourceTree = "<group>"; };
+		244825541FAE095800D7A118 /* MAThermometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAThermometer.h; sourceTree = "<group>"; };
+		244825551FAE095800D7A118 /* MAThermometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAThermometer.m; sourceTree = "<group>"; };
+		244825561FAE095800D7A118 /* MAThermometerBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAThermometerBorder.h; sourceTree = "<group>"; };
+		244825571FAE095800D7A118 /* MAThermometerBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAThermometerBorder.m; sourceTree = "<group>"; };
 		24D7C0F51F86548D0020EB4C /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24D7C0F71F8654E90020EB4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24D7C0F91F8667E60020EB4C /* InitialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,10 @@
 		2407E4EA1F825C0100603872 /* FIT5140Final */ = {
 			isa = PBXGroup;
 			children = (
+				244825541FAE095800D7A118 /* MAThermometer.h */,
+				244825551FAE095800D7A118 /* MAThermometer.m */,
+				244825561FAE095800D7A118 /* MAThermometerBorder.h */,
+				244825571FAE095800D7A118 /* MAThermometerBorder.m */,
 				24202F8A1F9C806B004FF5AA /* User+CoreDataClass.swift */,
 				24202F8B1F9C806B004FF5AA /* User+CoreDataProperties.swift */,
 				24D7C11B1F9611650020EB4C /* C415F3F13BBD50B1-info.plist */,
@@ -159,7 +167,6 @@
 				24D7C0F91F8667E60020EB4C /* InitialController.swift */,
 				24D7C0FD1F866D350020EB4C /* GameController.swift */,
 				24202F771F99A11E004FF5AA /* EnvironmentController.swift */,
-				24202F791F99A3AE004FF5AA /* EnvironmentCell.swift */,
 				24202F851F9C391E004FF5AA /* ProfileController.swift */,
 				24D7C1011F95BDEA0020EB4C /* HistoryController.swift */,
 				24D7C1031F95BE390020EB4C /* HistoryCell.swift */,
@@ -354,13 +361,14 @@
 				24202F861F9C391E004FF5AA /* ProfileController.swift in Sources */,
 				24202F8C1F9C806B004FF5AA /* User+CoreDataClass.swift in Sources */,
 				24D7C0FE1F866D350020EB4C /* GameController.swift in Sources */,
+				244825591FAE095800D7A118 /* MAThermometerBorder.m in Sources */,
+				244825581FAE095800D7A118 /* MAThermometer.m in Sources */,
 				24202F761F98C21E004FF5AA /* EnvironmentData.swift in Sources */,
 				24202F801F9B6D7B004FF5AA /* RankingTableCell.swift in Sources */,
 				24D7C1121F95EA390020EB4C /* GiFHUD.swift in Sources */,
 				24202F781F99A11E004FF5AA /* EnvironmentController.swift in Sources */,
 				24202F891F9C7C4D004FF5AA /* localuser.xcdatamodeld in Sources */,
 				24D7C0F61F86548D0020EB4C /* MainController.swift in Sources */,
-				24202F7A1F99A3AE004FF5AA /* EnvironmentCell.swift in Sources */,
 				24D7C1021F95BDEA0020EB4C /* HistoryController.swift in Sources */,
 				24202F7C1F99B70F004FF5AA /* HistoryData.swift in Sources */,
 				24202F741F975C97004FF5AA /* SignupController.swift in Sources */,
