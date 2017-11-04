@@ -152,7 +152,7 @@ class GameController: UIViewController {
             progressView.progress = 0
         }
     }
-    //this function is for mission completing countdown. when a mission is generated, this function will be triggered.
+    //this function is for mission generating countdown. after a mission is completed, this function will be triggered.
     func tickDown2()
     {
         nextMissionTimeLeft.text = "Next Mission Will in \(nextMissionTime!) s"
@@ -168,6 +168,7 @@ class GameController: UIViewController {
         }
     }
     
+    //This function is used to handle the behavior after a mission is completed. If a mission is completed correctly, current credit will be added. Otherwise, it will minus 1 credit. 
     func finishMission(isSuccess:Bool)
     {
         timeleft.text = "No event now"
