@@ -51,6 +51,8 @@ class AboutController: UIViewController {
             self.url = "https://github.com/MinMao-Hub/MMShareSheet"
         }else if (btn.tag == 102){
             self.url = "https://github.com/StoneLeon/STLBGVideo"
+        }else if (btn.tag == 103){
+            self.url = "https://github.com/micazeve/MAThermometer"
         }
         self.performSegue(withIdentifier: "gotoRef1", sender: self.view)
         
