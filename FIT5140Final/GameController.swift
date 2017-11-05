@@ -239,7 +239,7 @@ class GameController: UIViewController {
     func alarm()
     {
         download()
-        if (currEnv.rain == 0)
+        if (currEnv.fire == 0)
         {
             if (timerJudge != nil)
             {
@@ -332,7 +332,7 @@ class GameController: UIViewController {
             break
             
         case 4: // On fire
-            if currEnv.rain == 1 // no fire now
+            if currEnv.fire == 1 // no fire now
             {
                 timeleft.text = ""
                 mission.text = "Current Mission:    Nothing"
