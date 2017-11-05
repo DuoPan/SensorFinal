@@ -117,6 +117,10 @@ class InitialController: UIViewController, UITextViewDelegate, UITextFieldDelega
         settings.currTree = self.imageName
         settings.currMission = "no"
         settings.timeLeft = Int(tfMissionInterval.text!)!
+        if settings.initialHP >= settings.maxHP{
+            showMessage(msg: "Initial Value should less than Max HP!")
+            return
+        }
     }
     
     // pop up dialog to give user feedback
