@@ -8,7 +8,9 @@
 
 import UIKit
 
-//reference:
+//This is the first page of the application.
+
+//reference: use a video as backgorund
 //https://github.com/StoneLeon/STLBGVideo
 
 class LoginController: STLVideoViewController {
@@ -20,22 +22,19 @@ class LoginController: STLVideoViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         
         let gameNameImage = #imageLiteral(resourceName: "gamename")
-        
+        // make game name image move
         let gameNameLayer = createLayer(position:CGPoint(x: self.view.center.x, y: (self.view.center.y + self.view.bounds.height) / 2.5)
             , backgroundColor: .clear)
         gameNameLayer.contents = gameNameImage.cgImage
         gameNameLayer.add(createAnimation(), forKey: nil)
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
     func createLayer (position: CGPoint, backgroundColor: UIColor) -> CALayer {
-
         let layer = CALayer()
         layer.position = position
         layer.bounds = CGRect(x: 0, y: 0, width: 350, height: 80)
