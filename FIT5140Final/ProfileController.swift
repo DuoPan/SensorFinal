@@ -47,7 +47,6 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         let photoRef = storageRef?.child(username + ".png")
         photoRef?.getData(maxSize: 1 * 10240 * 10240) { data, error in
             if let _ = error {
-                //self.showMessage(msg: "Your photo size is too large!")
                 self.imageView.image = #imageLiteral(resourceName: "default")
             } else {
                 let image = UIImage(data: data!)
@@ -109,14 +108,6 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
 
         GiFHUD.setGif("hud1.gif")
         GiFHUD.showForSeconds(1)
-    }
-    
-    func showMessage(msg:String){
-        let alertController = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-        self.present(alertController, animated: true, completion: nil)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            self.presentedViewController?.dismiss(animated: false, completion: nil)
-        }
     }
     
     // select photo from photo library

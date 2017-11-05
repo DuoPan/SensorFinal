@@ -20,14 +20,14 @@ class MainController: UIViewController {
     var histories:[HistoryData]!        //store game history data if user choose load game
     var totalScore:Int!                 //load total score since registration from firebase
     
-    var isBack:Bool!                    //if load game, remove more observers
+    var removeObseverTag:Int!           //if load game, or load fail, remove more observers
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Exit", style: .done, target: self, action: #selector(exitGame))
         
-        isBack = true
+        removeObseverTag = 0
         download()
     }
 
@@ -52,10 +52,11 @@ class MainController: UIViewController {
     
     // remove observers, otherwise problems will be happen when saving game
     override func viewDidDisappear(_ animated: Bool) {
-        firebaseRef!.child(self.username).removeAllObservers()
-        
-        if isBack {//start new game
-        }else{//load game
+        firebaseRef!.child(self.username).removeAllObservers() // remove an observer used in download
+        if removeObseverTag == 1{
+            firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
+        }
+        else if removeObseverTag == 2 {
             firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
             firebaseRef!.child(self.username + "/currentGame").removeObserver(withHandle: firebaseObserverID2!)
         }
@@ -76,11 +77,11 @@ class MainController: UIViewController {
             if !snapshot.hasChild(self.username)
             {
                 self.showMessage(msg: "You do not have a file")
+                self.removeObseverTag = 1//need to remove 1 observer
                 return
             }
             else// get all setting data
             {
-            
                 self.firebaseObserverID2 = self.firebaseRef!.child(self.username + "/currentGame").observe(DataEventType.value, with: {(snapshot) in
                     for child in snapshot.children{
                         let snap = child as! DataSnapshot
@@ -116,12 +117,13 @@ class MainController: UIViewController {
                             }
                         }
                     }
+                    // must put before return
+                    self.removeObseverTag = 2//need to remove 2 observers
                     // can not load a finished game
                     if(self.settings.initialHP == self.settings.maxHP){
                         self.showMessage(msg: "You have finished last game, please start a new game")
                         return
                     }
-                    self.isBack = false
                     self.performSegue(withIdentifier: "loadGame", sender: self.view)
                 })
             }
