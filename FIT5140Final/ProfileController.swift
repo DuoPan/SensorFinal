@@ -47,7 +47,7 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         let photoRef = storageRef?.child(username + ".png")
         photoRef?.getData(maxSize: 1 * 10240 * 10240) { data, error in
             if let _ = error {
-                self.showMessage(msg: "Your photo size is too large!")
+                //self.showMessage(msg: "Your photo size is too large!")
                 self.imageView.image = #imageLiteral(resourceName: "default")
             } else {
                 let image = UIImage(data: data!)
