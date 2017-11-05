@@ -257,7 +257,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFd-62-2Bj">
-                                <rect key="frame" x="18" y="435" width="378" height="21"/>
+                                <rect key="frame" x="18" y="464" width="378" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -277,13 +277,6 @@
                                 <color key="progressTintColor" red="0.38245962369999997" green="0.94658153550000002" blue="0.27771060440000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="trackTintColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Mission:    " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ux-xW-6UA">
-                                <rect key="frame" x="20" y="406" width="374" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mission" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvv-GC-jLR">
                                 <rect key="frame" x="20" y="377" width="374" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -293,6 +286,17 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPW-bd-oFb">
                                 <rect key="frame" x="16" y="464" width="378" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mission" translatesAutoresizingMaskIntoConstraints="NO" id="Mk7-ze-lK7">
+                                <rect key="frame" x="113" y="366" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Mission:    " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ux-xW-6UA">
+                                <rect key="frame" x="18" y="435" width="374" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -343,18 +347,18 @@
                                     <constraint firstAttribute="width" secondItem="mM0-Af-FUI" secondAttribute="height" multiplier="329:93" id="5TW-eK-En4"/>
                                     <constraint firstAttribute="width" constant="329" id="zH4-Qq-Dgl"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMQ-Zw-Cmk">
-                                <rect key="frame" x="50" y="386" width="329" height="93"/>
+                                <rect key="frame" x="50" y="386" width="329" height="67"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="XMQ-Zw-Cmk" secondAttribute="height" multiplier="329:93" id="BB4-DD-zNY"/>
+                                    <constraint firstAttribute="width" secondItem="XMQ-Zw-Cmk" secondAttribute="height" multiplier="329:93" constant="91.978494623655905" id="BB4-DD-zNY"/>
                                     <constraint firstAttribute="width" constant="329" id="xBs-Db-BCe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" red="1" green="0.32021529589999997" blue="0.2935141248" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="auw-Q6-8gd">
@@ -365,12 +369,12 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5Q-XL-Ssl">
-                                <rect key="frame" x="50" y="487" width="329" height="93"/>
+                                <rect key="frame" x="50" y="461" width="329" height="53"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="v5Q-XL-Ssl" secondAttribute="height" multiplier="329:93" id="QKR-0l-tOC"/>
+                                    <constraint firstAttribute="width" secondItem="v5Q-XL-Ssl" secondAttribute="height" multiplier="329:93" constant="141.50537634408602" id="QKR-0l-tOC"/>
                                     <constraint firstAttribute="width" constant="329" id="c9a-V2-cSc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1208,6 +1212,7 @@
         <image name="duopan" width="278" height="280"/>
         <image name="edit" width="16" height="16"/>
         <image name="loadgame" width="962" height="368"/>
+        <image name="mission" width="188" height="188"/>
         <image name="newgame" width="962" height="364"/>
         <image name="tree1" width="600" height="723"/>
         <image name="tree_main" width="1954" height="1583"/>

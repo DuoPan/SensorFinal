@@ -91,7 +91,7 @@ class GameController: UIViewController {
             timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
                                                 selector:#selector(self.tickDown1),
                                                 userInfo:nil,repeats:true)
-            timerJudge = Timer.scheduledTimer(timeInterval: 5, target: self,
+            timerJudge = Timer.scheduledTimer(timeInterval: 4, target: self,
                                               selector: #selector(self.judge),
                                               userInfo: nil, repeats: true)
         }
@@ -131,7 +131,7 @@ class GameController: UIViewController {
         timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
                                                selector:#selector(self.tickDown1),
                                                userInfo:nil,repeats:true)
-        timerJudge = Timer.scheduledTimer(timeInterval: 5, target: self,
+        timerJudge = Timer.scheduledTimer(timeInterval: 4, target: self,
                                           selector: #selector(self.judge),
                                           userInfo: nil, repeats: true)
     }
@@ -155,7 +155,7 @@ class GameController: UIViewController {
     //this function is for mission generating countdown. after a mission is completed, this function will be triggered.
     func tickDown2()
     {
-        timeleft.text = "Next Mission Will in \(nextMissionTime!) s"
+        timeleft.text = "Next Mission Starts After \(nextMissionTime!) s"
         nextMissionTime! -= 1
         progressView.progress += 1.0 / Float(settings.missionInterval)
         if(nextMissionTime < 0)
@@ -254,7 +254,7 @@ class GameController: UIViewController {
             timerMission = Timer.scheduledTimer(timeInterval: TimeInterval(1), target:self,
                                                 selector:#selector(self.tickDown1),
                                                 userInfo:nil,repeats:true)
-            timerJudge = Timer.scheduledTimer(timeInterval: 5, target: self,
+            timerJudge = Timer.scheduledTimer(timeInterval: 4, target: self,
                                               selector: #selector(self.judge),
                                               userInfo: nil, repeats: true)
             timerAlarm.invalidate()

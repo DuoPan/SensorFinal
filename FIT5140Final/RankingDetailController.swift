@@ -72,6 +72,10 @@ class RankingDetailController: UIViewController {
                     self.imageView.image = image
                 }
             }
+            self.imageView.layer.borderWidth = 10
+            self.imageView.layer.masksToBounds = false
+            self.imageView.layer.cornerRadius = self.imageView.frame.width/2
+            self.imageView.clipsToBounds = true
         }
     }
     

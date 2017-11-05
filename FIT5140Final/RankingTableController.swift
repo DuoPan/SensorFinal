@@ -80,8 +80,11 @@ class RankingTableController: UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "rankingCell", for: indexPath) as! RankingTableCell
         if indexPath.row == 0 {
             cell.username.text = "User"
+            cell.username.font = UIFont.boldSystemFont(ofSize: 17.0)
             cell.rank.text = "Rank"
+            cell.rank.font = UIFont.boldSystemFont(ofSize: 17.0)
             cell.score.text = "Credits"
+            cell.score.font = UIFont.boldSystemFont(ofSize: 17.0)
         }
         else{
             let selectedPlayer = self.players[indexPath.row - 1]
