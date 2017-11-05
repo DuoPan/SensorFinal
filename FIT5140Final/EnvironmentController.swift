@@ -11,8 +11,9 @@ import UIKit
 class EnvironmentController: UIViewController {
     @IBOutlet var meter: MAThermometer!
     @IBOutlet var temper: UILabel!
-    @IBOutlet var slider: UISlider!
-
+    @IBOutlet var meterH: MAThermometer!
+    @IBOutlet var humidity: UILabel!
+    
     var envData : EnvironmentData!
     var timerGetData:Timer!
     
@@ -27,7 +28,10 @@ class EnvironmentController: UIViewController {
         meter.maxValue = 50.0
         meter.minValue = -10.0
         meter.glassEffect = true
-        
+        meterH.maxValue = 100.0
+        meterH.minValue = 0.0
+        meterH.glassEffect = true
+        meter.arrayColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.lightGray, UIColor.white]
         download()
         
     }
@@ -41,10 +45,13 @@ class EnvironmentController: UIViewController {
         // fast method to get data
         guard let envJsonData = NSData(contentsOf: url) else { return }
         let jsonData = JSON(envJsonData)
-        envData.temperature = jsonData["temperature"].int!;
+        envData.temperature = jsonData["temperature"].int!
+        envData.humidity = jsonData["humidity"].int!
         
         meter.curValue = CGFloat(envData.temperature)
+        meterH.curValue = CGFloat(envData.humidity)
         temper.text = "\(envData.temperature) ℃"
+        humidity.text = "\(envData.humidity) %"
 
     }
     
@@ -59,11 +66,7 @@ class EnvironmentController: UIViewController {
 
 
 
-    @IBAction func move(_ sender: Any) {
-        meter.curValue = CGFloat(slider.value)
-        let str = String(format: "%.2f", meter.curValue)
-        temper.text = "\(str) ℃"
-    }
+    
 
     /*
     // MARK: - Navigation

@@ -700,19 +700,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQ1-DE-4Yh" customClass="MAThermometer">
-                                <rect key="frame" x="87" y="184" width="240" height="368"/>
+                                <rect key="frame" x="66" y="189" width="141" height="358"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="-10" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="Vry-AR-tnc">
-                                <rect key="frame" x="34" y="675" width="346" height="31"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFr-pe-uDO" userLabel="Humidity" customClass="MAThermometer">
+                                <rect key="frame" x="207" y="189" width="141" height="358"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="move:" destination="6Ye-Vj-7fC" eventType="valueChanged" id="y6h-KO-Z0L"/>
-                                </connections>
-                            </slider>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWl-5o-BYp">
+                                <rect key="frame" x="207" y="580" width="141" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYT-gs-6cv">
-                                <rect key="frame" x="93" y="618" width="228" height="21"/>
+                                <rect key="frame" x="66" y="581" width="141" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -722,8 +727,9 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="humidity" destination="TWl-5o-BYp" id="qqC-Xf-SDQ"/>
                         <outlet property="meter" destination="SQ1-DE-4Yh" id="1Q5-rB-Mt5"/>
-                        <outlet property="slider" destination="Vry-AR-tnc" id="OtO-Ju-SGd"/>
+                        <outlet property="meterH" destination="oFr-pe-uDO" id="6FR-at-CsA"/>
                         <outlet property="temper" destination="eYT-gs-6cv" id="NPj-x0-17P"/>
                     </connections>
                 </viewController>
