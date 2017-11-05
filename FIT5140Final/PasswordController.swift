@@ -10,14 +10,16 @@ import UIKit
 import Firebase
 import CoreData
 
+//This is the login page
+
 class PasswordController: UIViewController {
 
-    @IBOutlet var labelID: UITextField!
-    @IBOutlet var labelPassword: UITextField!
+    @IBOutlet var labelID: UITextField!         //login name
+    @IBOutlet var labelPassword: UITextField!   //login password
     
     var firebaseRef: DatabaseReference?
     var firebaseObserverID: UInt?
-    var playerList:[Player]?
+    var playerList:[Player]?                    //store all players name/password pair
     
     var managedContext: NSManagedObjectContext?
     var appDelegate: AppDelegate?
@@ -28,7 +30,6 @@ class PasswordController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(backToPrevious))
         self.view.backgroundColor =  UIColor(patternImage: #imageLiteral(resourceName: "loginbg"))
         
-        
         appDelegate = UIApplication.shared.delegate as? AppDelegate
         managedContext = appDelegate?.persistentContainer.viewContext
         fetchLastLogin()
@@ -37,6 +38,7 @@ class PasswordController: UIViewController {
         download()
     }
 
+    // get all players' login information from firebase, sotre in the list
     func download()
     {
         firebaseRef = Database.database().reference(withPath:"Players")
@@ -53,11 +55,13 @@ class PasswordController: UIViewController {
         })
     }
     
+    // remove observer
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
     }
     
+    // pop up dialog to give user feedback
     func showMessage(msg:String){
         let alertController = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
         self.present(alertController, animated: true, completion: nil)
@@ -66,11 +70,13 @@ class PasswordController: UIViewController {
         }
     }
     
+    // called by nav bar left button
     func backToPrevious(){
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController!.popViewController(animated: true)
     }
     
+    // user login info validation
     @IBAction func login(_ sender: Any) {
         if labelID.text == "" || labelPassword.text == "" {
             showMessage(msg: "Please Enter Name and Password")
@@ -86,10 +92,10 @@ class PasswordController: UIViewController {
         // wrong pair
         showMessage(msg: "Wrong Name or Password")
         return
-
-        
     }
     
+    // app remember the last login user info from coredata
+    // it is for quick login
     func fetchLastLogin()
     {
         let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
@@ -108,7 +114,6 @@ class PasswordController: UIViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "gotoMain") {
             let controller = segue.destination as! MainController
@@ -117,6 +122,7 @@ class PasswordController: UIViewController {
         }
     }
     
+    // after login, coredata will store the current login user info.
     func saveLastUser()
     {
         let lastFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
@@ -136,8 +142,6 @@ class PasswordController: UIViewController {
         } catch {
             fatalError("Failed to fetch category list: \(error)")
         }
-        
-        
         appDelegate?.saveContext()
     }
 

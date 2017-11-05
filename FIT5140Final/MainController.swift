@@ -12,15 +12,15 @@ import Firebase
 class MainController: UIViewController {
 
     var firebaseRef: DatabaseReference?
-    var firebaseObserverID: UInt?
-    var firebaseObserverID2: UInt?
+    var firebaseObserverID: UInt?       //observer user info
+    var firebaseObserverID2: UInt?      //observer game history
     
-    var username:String!
-    var settings: GameSetting!
-    var histories:[HistoryData]!
-    var totalScore:Int!
+    var username:String!                //user name
+    var settings: GameSetting!          //store game setting data if user choose load game
+    var histories:[HistoryData]!        //store game history data if user choose load game
+    var totalScore:Int!                 //load total score since registration from firebase
     
-    var isBack:Bool!
+    var isBack:Bool!                    //if load game, remove more observers
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +28,10 @@ class MainController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Exit", style: .done, target: self, action: #selector(exitGame))
         
         isBack = true
-        download() // download total score
+        download()
     }
 
+    // download total score
     func download(){
         firebaseRef = Database.database().reference(withPath:"Savings/Players")
         firebaseRef?.child(self.username).observeSingleEvent(of: .value, with: {(snapshot) in
@@ -49,11 +50,12 @@ class MainController: UIViewController {
 
     }
     
+    // remove observers, otherwise problems will be happen when saving game
     override func viewDidDisappear(_ animated: Bool) {
         firebaseRef!.child(self.username).removeAllObservers()
         
-        if isBack {
-        }else{
+        if isBack {//start new game
+        }else{//load game
             firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
             firebaseRef!.child(self.username + "/currentGame").removeObserver(withHandle: firebaseObserverID2!)
         }
@@ -69,13 +71,14 @@ class MainController: UIViewController {
         settings = GameSetting()
         histories = []
         
+        // check if the user have a saving file
         firebaseObserverID = firebaseRef!.observe(DataEventType.value, with: {(snapshot) in
             if !snapshot.hasChild(self.username)
             {
                 self.showMessage(msg: "You do not have a file")
                 return
             }
-            else
+            else// get all setting data
             {
             
                 self.firebaseObserverID2 = self.firebaseRef!.child(self.username + "/currentGame").observe(DataEventType.value, with: {(snapshot) in
@@ -97,7 +100,8 @@ class MainController: UIViewController {
                             self.settings.currMission = snap.value as! String
                         }else if(snap.key == "history"){
                             let array = snap.value as! NSArray
-                            // acutall 3 in firebase, I dont know why it is 4 here
+                            // acutally 3 in firebase, I dont understand why it is 4 here
+                            // so I have to remove NSNull here
                             for case let item as NSObject in array {
                                 if item is NSNull{
                                     continue
@@ -112,11 +116,12 @@ class MainController: UIViewController {
                             }
                         }
                     }
-                    self.isBack = false
+                    // can not load a finished game
                     if(self.settings.initialHP == self.settings.maxHP){
                         self.showMessage(msg: "You have finished last game, please start a new game")
                         return
                     }
+                    self.isBack = false
                     self.performSegue(withIdentifier: "loadGame", sender: self.view)
                 })
             }

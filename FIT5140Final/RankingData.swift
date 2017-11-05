@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// the class is service for ranking list
 class RankingData: NSObject {
     var name:String
     var score:Int

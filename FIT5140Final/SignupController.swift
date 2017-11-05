@@ -9,15 +9,16 @@
 import UIKit
 import Firebase
 
+// This is sign up page
 class SignupController: UIViewController {
 
-    @IBOutlet var username: UITextField!
-    @IBOutlet var password1: UITextField!
-    @IBOutlet var password2: UITextField!
+    @IBOutlet var username: UITextField!        //login name
+    @IBOutlet var password1: UITextField!       //login password
+    @IBOutlet var password2: UITextField!       //password double check
     
     var firebaseRef: DatabaseReference?
     var firebaseObserverID: UInt?
-    var nameList:[String]?
+    var nameList:[String]?                      //login name should be unique, it stores all existed names
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class SignupController: UIViewController {
         download()
     }
 
+    // fetch all existed login names from firebase
     func download()
     {
         firebaseRef = Database.database().reference(withPath:"Players")
@@ -43,17 +45,19 @@ class SignupController: UIViewController {
         })
     }
     
-    
+    // remove observer
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
     }
     
+    // called by nav bar left button
     func backToPrevious(){
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController!.popViewController(animated: true)
     }
 
+    // check inputs. If create success, save the new user info into firebase and navigate to main page
     @IBAction func create(_ sender: Any) {
         if username.text == "" {
             showMessage(msg: "Please Enter a User Name")
@@ -73,11 +77,11 @@ class SignupController: UIViewController {
             showMessage(msg: "Please Enter the Same Password")
             return
         }
-        // can check psw pattern latter
         upload()
         self.performSegue(withIdentifier: "gotoMain2", sender: view)
     }
     
+    // pop up dialog to give user feedback
     func showMessage(msg:String){
         let alertController = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
         self.present(alertController, animated: true, completion: nil)
@@ -86,6 +90,7 @@ class SignupController: UIViewController {
         }
     }
     
+    // store name/psw pair in firebase
     func upload()
     {
         let newPlayer = firebaseRef!.child(username.text!)
@@ -96,7 +101,6 @@ class SignupController: UIViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "gotoMain2") {
             let controller = segue.destination as! MainController
