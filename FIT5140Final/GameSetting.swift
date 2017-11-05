@@ -14,7 +14,7 @@ class GameSetting: NSObject {
     var maxHP: Int
     var missionInterval: Int
     var missionDuration: Int
-    var currTree:String
+    var currTree:String         // image name
     
     var currMission:String
     var timeLeft:Int

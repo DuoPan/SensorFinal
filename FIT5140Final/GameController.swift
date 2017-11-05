@@ -47,7 +47,7 @@ class GameController: UIViewController {
         currEnv = EnvironmentData()
         
         // Change words on Navigation bar back item
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "加个啥呢", style: .done, target: self, action: #selector(menu))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .done, target: self, action: nil)
         
         progressView.transform = CGAffineTransform(scaleX: 1.0, y: 5.0)
 
@@ -217,8 +217,6 @@ class GameController: UIViewController {
     
     func download()
     {
-        //获取一组数据
-        //然后赋值
 //        currEnv.temperature = 25 // example
         var url: URL
         //url = URL(string: "http://192.168.1.103:8080/temperature")!
@@ -378,24 +376,7 @@ class GameController: UIViewController {
         currMission = getRandomMission()
         mission.text = "Current Mission:    \(missions[currMission])"
     }
-
-    // go to login page
-    func menu(){
-        // set menu
-        let menu = UIAlertController(title: "Exit", message: "Do you want to save this game?", preferredStyle: .actionSheet)
-        let option1 = UIAlertAction(title: "Save and exit", style: .default){ (_) in self.saveGame()}
-        let option2 = UIAlertAction(title: "Exit without saving", style: .default){(_) in self.exitGame() }
-        let optionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        menu.addAction(option1)
-        menu.addAction(option2)
-        menu.addAction(optionCancel)
-        self.present(menu, animated: true, completion: nil)
-        
-        
-        
-
-    }
-    
+   
     func saveGame()
     {
         firebaseRef = Database.database().reference(withPath:"Savings/Players/"+self.username)
@@ -426,6 +407,15 @@ class GameController: UIViewController {
     
     func exitGame()
     {
+        if timerAlarm != nil{
+            timerAlarm.invalidate()
+        }
+        if timerJudge != nil{
+            timerJudge.invalidate()
+        }
+        if timerMission != nil{
+            timerMission.invalidate()
+        }
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController!.popToRootViewController(animated: true)
     }

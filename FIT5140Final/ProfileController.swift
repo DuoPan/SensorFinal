@@ -64,6 +64,7 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         // Dispose of any resources that can be recreated.
     }
     
+    // download user photo
     func download(){
         firebaseRef = Database.database().reference(withPath:"Players")
         firebaseObserverID = firebaseRef!.observe(DataEventType.value, with: {(snapshot) in
@@ -91,6 +92,7 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         tfPassword.isEnabled = !tfPassword.isEnabled
     }
   
+    // modify user password and save in firebase
     @IBAction func save(_ sender: Any) {
         //  change password if necessary
         if (tfPassword.text != "")
@@ -117,6 +119,7 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         }
     }
     
+    // select photo from photo library
     @IBAction func changePhoto(_ sender: Any) {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             let warnInfo = UIAlertController(title: "Warning", message: "Can not access photo library!", preferredStyle: UIAlertControllerStyle.alert)
@@ -131,6 +134,7 @@ class ProfileController: UIViewController , UINavigationControllerDelegate,UIIma
         picker.delegate = self
         self.present(picker, animated:true, completion:nil)
     }
+    
     // when user choose a picture, the function will be called
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage

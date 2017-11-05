@@ -7,15 +7,17 @@
 //
 
 import UIKit
+// reference: https://github.com/micazeve/MAThermometer
+// a temperature meter can customer-define colors and size
 
 class EnvironmentController: UIViewController {
-    @IBOutlet var meter: MAThermometer!
-    @IBOutlet var temper: UILabel!
-    @IBOutlet var meterH: MAThermometer!
-    @IBOutlet var humidity: UILabel!
+    @IBOutlet var meter: MAThermometer!             // temperature meter
+    @IBOutlet var temper: UILabel!                  // temperature label
+    @IBOutlet var meterH: MAThermometer!            // humidity meter
+    @IBOutlet var humidity: UILabel!                // humidity label
     
-    var envData : EnvironmentData!
-    var timerGetData:Timer!
+    var envData : EnvironmentData!                  // store environment data
+    var timerGetData:Timer!                         // fetch data every 2 seconds
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +65,6 @@ class EnvironmentController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         timerGetData.invalidate()
     }
-
-
-
-    
 
     /*
     // MARK: - Navigation

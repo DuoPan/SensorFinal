@@ -8,20 +8,20 @@
 
 import UIKit
 
-class InitialController: UIViewController {
+class InitialController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet var tfInitialHP: UITextField!
-    @IBOutlet var tfMaxHP: UITextField!
-    @IBOutlet var tfMissionInterval: UITextField!
-    @IBOutlet var tfMissionDuration: UITextField!
+    @IBOutlet var tfInitialHP: UITextField!             // initial credits
+    @IBOutlet var tfMaxHP: UITextField!                 // target credits
+    @IBOutlet var tfMissionInterval: UITextField!       // mission interval
+    @IBOutlet var tfMissionDuration: UITextField!       // mission duration
     
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var imageView: UIImageView!               // tree image (60 kinds)
     
-    var imageName = "tree1"
+    var imageName = "tree1"                             // default tree image
     
-    var settings = GameSetting()
+    var settings = GameSetting()                        // store settings
     var username:String!
-    var background: UIView?
+    var background: UIView?                             // show image in full screen
     
     var totalScore:Int!
     
@@ -33,12 +33,18 @@ class InitialController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         self.imageView.addGestureRecognizer(tapGestureRecognizer)
         self.imageView.isUserInteractionEnabled = true
+        
+        self.tfInitialHP.delegate = self
+        self.tfMaxHP.delegate = self
+        self.tfMissionInterval.delegate = self
+        self.tfMissionDuration.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    // click image to make it full screen
     func tapHandler(sender: UITapGestureRecognizer) {
         let bgView = UIView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)!, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - (self.navigationController?.navigationBar.frame.height)!))
         bgView.backgroundColor = UIColor.gray
@@ -71,6 +77,7 @@ class InitialController: UIViewController {
         aView.layer.add(animation, forKey: nil)
     }
     
+    // randomly return a tree image from 60 images
     @IBAction func generateTree(_ sender: Any) {
         // tree1 -- tree60 images
         let no = arc4random_uniform(UInt32(60)) + 1
@@ -95,9 +102,14 @@ class InitialController: UIViewController {
     }
     
 
-    
+    // do validation
     func getSettings()
     {
+        if tfInitialHP.text == "" || tfMaxHP.text == "" || tfMissionInterval.text == "" ||
+            tfMissionDuration.text == ""{
+            showMessage(msg: "Please Enter all blank fields!")
+            return
+        }
         settings.initialHP = Int(tfInitialHP.text!)!
         settings.maxHP = Int(tfMaxHP.text!)!
         settings.missionInterval = Int(tfMissionInterval.text!)!
@@ -107,5 +119,30 @@ class InitialController: UIViewController {
         settings.timeLeft = Int(tfMissionInterval.text!)!
     }
     
+    // pop up dialog to give user feedback
+    func showMessage(msg:String){
+        let alertController = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+        self.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            self.presentedViewController?.dismiss(animated: false, completion: nil)
+        }
+    }
+    
+    // do validation
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            // can only be numbers
+            let proposeLength = (textField.text?.characters.count)! - range.length + string.characters.count
+            if proposeLength > 5 {//max 5 digitals
+                return false
+            }
+            if string != ""{// enable delete key
+                let number = Int(string) // only numbers
+                if number == nil {
+                    return false
+                }
+            }
+      
+        return true
+    }
 
 }

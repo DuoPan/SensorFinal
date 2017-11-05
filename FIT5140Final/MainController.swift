@@ -20,8 +20,7 @@ class MainController: UIViewController {
     var histories:[HistoryData]!        //store game history data if user choose load game
     var totalScore:Int!                 //load total score since registration from firebase
     
-    var isBack:Bool!                    //user can only back to this page from initial settings page
-                                        //and no need to download data again.
+    var isBack:Bool!                    //if load game, remove more observers
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +54,8 @@ class MainController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         firebaseRef!.child(self.username).removeAllObservers()
         
-        if isBack {
-        }else{
+        if isBack {//start new game
+        }else{//load game
             firebaseRef!.removeObserver(withHandle: firebaseObserverID!)
             firebaseRef!.child(self.username + "/currentGame").removeObserver(withHandle: firebaseObserverID2!)
         }

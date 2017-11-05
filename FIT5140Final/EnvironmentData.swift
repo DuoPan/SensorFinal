@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// store environment data, till now we only use temperature and humidity
 class EnvironmentData: NSObject {
     var temperature: Int
     var humidity: Int

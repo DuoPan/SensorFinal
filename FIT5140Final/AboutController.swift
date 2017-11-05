@@ -7,13 +7,13 @@
 //
 
 import UIKit
-
+// introduce ourselves and link to Reference library web site.
 class AboutController: UIViewController {
 
     @IBOutlet var duo: UIImageView!
     @IBOutlet var xuan: UIImageView!
     
-    var url:String?
+    var url:String?         // url for web container
     
     override func viewDidLoad() {
         super.viewDidLoad()

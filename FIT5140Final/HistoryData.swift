@@ -11,7 +11,7 @@ import UIKit
 class HistoryData: NSObject {
     var number:Int
     var name:String
-    var valueChange:Int
+    var valueChange:Int     //add or delete score
     var totalScore:Int
     
     override init() {
