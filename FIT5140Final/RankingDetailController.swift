@@ -13,7 +13,9 @@ class RankingDetailController: UIViewController {
 
     @IBOutlet var labelName: UILabel!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var rank: UILabel!
  
+    @IBOutlet var score: UILabel!
     
     let storage = Storage.storage(url:"gs://fit5140-e5b30.appspot.com")
     var storageRef: StorageReference?
@@ -51,10 +53,15 @@ class RankingDetailController: UIViewController {
     
     func refreshUI() {
         if (player == nil){
-            labelName?.text = "Loading..."
+            self.labelName?.text = ""
+            self.rank?.text = "Welcome to ranking list!"
+            self.score?.text = ""
+            self.imageView?.image = #imageLiteral(resourceName: "welcome")
         }
         else{
             labelName?.text = player.name
+            self.rank.text = "Rank: \(player.rank)"
+            self.score.text = "Total credits: \(player.score)"
             storageRef = storage.reference()
             let photoRef = storageRef?.child((labelName?.text!)! + ".png")
             photoRef?.getData(maxSize: 1 * 10240 * 10240) { data, error in

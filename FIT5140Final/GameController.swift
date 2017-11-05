@@ -47,7 +47,7 @@ class GameController: UIViewController {
         currEnv = EnvironmentData()
         
         // Change words on Navigation bar back item
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "加个啥呢", style: .done, target: self, action: #selector(menu))
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "加个啥呢", style: .done, target: self, action: #selector(menu))
         
         progressView.transform = CGAffineTransform(scaleX: 1.0, y: 5.0)
 

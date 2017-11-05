@@ -11,10 +11,12 @@ import UIKit
 class RankingData: NSObject {
     var name:String
     var score:Int
+    var rank:Int
     
     init(name:String, score:Int)
     {
         self.name = name
         self.score = score
+        self.rank = 0
     }
 }
