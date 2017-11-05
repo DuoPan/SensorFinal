@@ -45,9 +45,14 @@ class EnvironmentController: UIViewController {
         // fast method to get data
         guard let envJsonData = NSData(contentsOf: url) else { return }
         let jsonData = JSON(envJsonData)
-        envData.temperature = jsonData["temperature"].int!
-        envData.humidity = jsonData["humidity"].int!
-        
+        if jsonData["temperature"].int != nil && jsonData["humidity"].int != nil && jsonData["light"].int != nil && jsonData["rain"].int != nil && jsonData["fire"].int != nil
+        {
+            envData.temperature = jsonData["temperature"].int!;
+            envData.humidity = jsonData["humidity"].int!;
+            envData.light = jsonData["light"].int!;
+            envData.rain = jsonData["rain"].int!;
+            envData.fire = jsonData["fire"].int!;
+        }
         meter.curValue = CGFloat(envData.temperature)
         meterH.curValue = CGFloat(envData.humidity)
         temper.text = "\(envData.temperature) ℃"
