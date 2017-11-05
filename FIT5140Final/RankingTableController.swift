@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+// used to assign ranking value to the detail view of selected cell
 protocol PlayerSelectionDelegate: class {
     func playerSelected(newPlayer: RankingData)
 }
@@ -34,6 +35,7 @@ class RankingTableController: UITableViewController{
         
     }
     
+    //download some information for ranking, and sort by score decreasing
     func download()
     {
         firebaseRef = Database.database().reference(withPath:"Savings/Players")
@@ -51,6 +53,7 @@ class RankingTableController: UITableViewController{
 
     }
 
+    // nav bar left button
     func backToPrevious()
     {
         firebaseRef?.removeAllObservers()
@@ -70,12 +73,13 @@ class RankingTableController: UITableViewController{
         return 1
     }
 
+    // only show top 10
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return players.count < 10 ? players.count + 1 : 11
     }
 
-    
+    // show each players information in the table view
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rankingCell", for: indexPath) as! RankingTableCell
         if indexPath.row == 0 {
@@ -93,8 +97,6 @@ class RankingTableController: UITableViewController{
             cell.rank.text = "\(indexPath.row)"
             cell.score.text = "\(selectedPlayer.score)"
         }
-        
-        
 
         return cell
     }

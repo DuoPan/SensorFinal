@@ -35,14 +35,14 @@ class HistoryController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! HistoryCell
-        if indexPath.row == 0 {
+        if indexPath.row == 0 {//first row
             cell.imageView?.image = #imageLiteral(resourceName: "icon_status")
             cell.number.text = "No"
             cell.name.text = "Event"
             cell.valueChange.text = "Score"
             cell.totalScore.text = "Total"
         }
-        else{
+        else{//other rows
             if(historyList[indexPath.row - 1].valueChange == 1){                
                 cell.imageView?.image = #imageLiteral(resourceName: "icon_right")
             }

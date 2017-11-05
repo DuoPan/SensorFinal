@@ -23,21 +23,21 @@ class GameController: UIViewController {
     //firebase reference
     var firebaseRef: DatabaseReference?
     
-    var username:String!
-    var settings: GameSetting!
-    var missionTime:Int!
-    var nextMissionTime: Int!
-    var timerMission:Timer!
-    var timerJudge: Timer!
-    var timerAlarm: Timer!
-    var curPoints: Int!
-    var tarPoints:Int!
-    var currMission: Int!
-    var missionEnv:EnvironmentData!
-    var currEnv:EnvironmentData!
-    var historyNo: Int!
-    var historyList:[HistoryData]!
-    var totalScore:Int!
+    var username:String!            //store current user name
+    var settings: GameSetting!      //store game settings: mission duration, interval, initial HP and target HP
+    var missionTime:Int!            //How many seconds left for the current mission
+    var nextMissionTime: Int!       //When will the next mission happen
+    var timerMission:Timer!         //Timer for starting and finishing a mission
+    var timerJudge: Timer!          //Timer for judging mission (every 5 seconds)
+    var timerAlarm: Timer!          //Timer for listening fire (every 1 seconds)
+    var curPoints: Int!             //current score
+    var tarPoints:Int!              //target score
+    var currMission: Int!           //current mission info
+    var missionEnv:EnvironmentData! //store environment info when a mission start
+    var currEnv:EnvironmentData!    //store current environment info
+    var historyNo: Int!             //the No. of a game record
+    var historyList:[HistoryData]!  //all history records
+    var totalScore:Int!             //total score since the user registration
     
     //pre-defined mission array. On fire is the alarm mission
     var missions = ["Water tree", "Need light", "Too cold", "Too hot", "On fire"]
@@ -235,6 +235,7 @@ class GameController: UIViewController {
         }
     }
     
+    //if fire happend, stop current mission and start fire mission
     func alarm()
     {
         download()
@@ -361,7 +362,7 @@ class GameController: UIViewController {
 //        return 1
     }
 
-    
+    //called when mission finish
     func addHistory(vc:Int)
     {
         historyNo! += 1
@@ -369,6 +370,7 @@ class GameController: UIViewController {
         historyList.append(his)
     }
     
+    //called when mission start
     func setMissionData()
     {
         download()
@@ -377,6 +379,7 @@ class GameController: UIViewController {
         mission.text = "Current Mission:    \(missions[currMission])"
     }
    
+    //save game process and history records
     func saveGame()
     {
         firebaseRef = Database.database().reference(withPath:"Savings/Players/"+self.username)
@@ -405,6 +408,7 @@ class GameController: UIViewController {
         
     }
     
+    // stop game timer and return to first page
     func exitGame()
     {
         if timerAlarm != nil{
@@ -505,7 +509,7 @@ class GameController: UIViewController {
     }
     
     
-    
+    // for test, finish mission directly
     @IBAction func cheat(_ sender: Any) {
         if(missionTime <= 0)
         {
