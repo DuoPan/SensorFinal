@@ -107,6 +107,10 @@ class SignupController: UIViewController {
             controller.username = self.username.text
         }
     }
- 
+    
+    // touch background to hide keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }

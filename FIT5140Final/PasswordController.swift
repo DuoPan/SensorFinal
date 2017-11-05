@@ -145,4 +145,8 @@ class PasswordController: UIViewController {
         appDelegate?.saveContext()
     }
 
+    // touch background to hide keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
