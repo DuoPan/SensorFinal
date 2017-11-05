@@ -31,7 +31,7 @@ class EnvironmentController: UIViewController {
         meterH.maxValue = 100.0
         meterH.minValue = 0.0
         meterH.glassEffect = true
-        meterH.arrayColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.lightGray, UIColor.white]
+        meter.arrayColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.lightGray, UIColor.white]
         download()
         
     }
